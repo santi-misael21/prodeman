@@ -17,6 +17,7 @@ export const LOGIN_USER = "LOGIN_USER";
 export const POST_USER = "POST_USER";
 export const LOGIN_ADMIN = "LOGIN_ADMIN";
 export const POST_ADMIN = "LOGIN_ADMIN";
+export const LOG_OUT = "LOG_OUT"
 export const GET_USERS = "GET_USERS";
 export const POST_NOTATION = "POST_NOTATION";
 
@@ -202,6 +203,13 @@ export const postAdmin = (admin) => { // user = {teamname, username, password,}
         })).catch(e=>console.log(e))
     }
 };
+
+export const logOut = () => {
+    return {
+        type: LOG_OUT,
+        payload: {}
+    }
+}
 
 export const postNotation = (notation) => {
     return async function (dispatch) {

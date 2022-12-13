@@ -33,6 +33,8 @@ export default function Categories(){
     let user = useSelector(state=> state.user)
     let admin = useSelector(state=> state.admin)
 	let catsubcatIds = useSelector(state=> state.cat_sub_related)
+    
+    // }
 
     // La function que dice si en la visit hay notations o no: hasta que no tenga result <Item/> no aparece
     if(rslt===null)setRslt(Detection(visit, catsRequired))
@@ -111,6 +113,19 @@ export default function Categories(){
         }
     }, [visit, rslt]);
 
+    let ready = true
+    for (let index = 0; index < completed.length; index++) {
+        if (completed[index] !== 1) ready = false
+    }
+    let style = {
+        cursor: ready? 'pointer':'',
+        width: '100%'
+    }
+
+    function saveAll(){
+        console.log('saveall')
+    }
+
     return (
         <div>
             { visit && Object.keys(visit).length && visit.id?
@@ -118,9 +133,12 @@ export default function Categories(){
             <Nav load={true}/>
             }
 
-            <Link to='/begin'> <u>Volver</u>
-            </Link>
-            
+            <div style={{display: 'flex', color: "orange", justifyContent:'space-evenly'}}>
+                <Link to='/begin' style={style}> <button style={style}> <u>Volver</u> </button>
+                </Link>{ user.id && 
+                <button style={style} onClick={saveAll} disabled={!ready}><u>Concluir visita</u></button>}
+            </div>
+
             {completed.length > 0 && 
                 <Pages completed={completed} />
             }

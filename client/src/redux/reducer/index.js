@@ -1,4 +1,4 @@
-import { CATS_SUBS, GET_ALL_VISITS, GET_TEAMS, GET_USER_VISITS, GET_VISIT_BYID, GET_VISIT_ID, LOGIN_ADMIN, LOGIN_USER, POST_ADMIN, POST_NOTATION, POST_TEAMS, POST_USER, SET_PAGE, STATUS_PAGES, WRITE, WRITECATS, WRITESUBS,  } from "../actions";
+import { CATS_SUBS, GET_ALL_VISITS, GET_TEAMS, GET_USER_VISITS, GET_VISIT_BYID, GET_VISIT_ID, LOGIN_ADMIN, LOGIN_USER, LOG_OUT, POST_ADMIN, POST_NOTATION, POST_TEAMS, POST_USER, SET_PAGE, STATUS_PAGES, WRITE, WRITECATS, WRITESUBS,  } from "../actions";
 import { putCategories } from "./auxiliar";
 
 
@@ -155,6 +155,12 @@ const rootReducer = (state= initialState, action)=>{
                 ...state,
                 admin: action.payload,
             };
+        case LOG_OUT:
+            return {
+                ...state,
+                user: action.payload,
+                admin: action.payload
+            }
 
         default: return state;
     };

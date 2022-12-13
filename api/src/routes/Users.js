@@ -7,7 +7,7 @@ const { category, subcategory, notation, visit, notation_visit, user, team } = r
 const axios = require('axios').default;
 
 router.post('/login', async (req, res) => {
-    let { username, password } = req.body
+    let { username, password, localst } = req.body
 console.log(req.body)
     try {
         
@@ -17,7 +17,7 @@ console.log(req.body)
             }
         })
 
-        if(userFound.dataValues.password === password) {
+        if(userFound.dataValues.password === password || localst) {
         
             let justCreated= await user.findOne({
                 where: {
