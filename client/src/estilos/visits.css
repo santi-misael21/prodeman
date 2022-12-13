@@ -1,0 +1,41 @@
+.visit {
+    display: flex;
+    /* width: 100%; */
+    justify-content: space-between;
+    border: 1px solid slategray;
+    min-width: fit-content;
+}
+.left, .middle{
+    font-size: 11px;
+}
+.left{
+    text-align: left;
+}
+.middle{
+    margin: auto;
+    padding: 11px 5%;
+    border-radius: 3px;
+}
+.right{
+    width: 20%;
+    height: max-content;
+    align-self: center; /*para centrar la altura*/
+    border-radius: 11px;
+    padding: 4px;
+    margin: 0px 5px;
+}
+#team, #date, #id{
+    padding: 0px 5px;
+    margin: 0px;
+    font-weight: 600;
+    font-size: 12px;
+}
+#team{
+    color: purple;
+}
+#date{
+    color: green;
+}
+#id{
+    color: orange;
+}
