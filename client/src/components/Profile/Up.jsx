@@ -150,9 +150,9 @@ export default function Logup(){
                 <div className="upright">
 
                     <div className="changerol">
-                        <p className="headerright">
-                            {tologup? 'Registrate ' /*para poder realizar relevamientos*/ : 'Ingresá '}{'como ' + actualrole[0]}
-                        </p>
+                        <div className="headerright">
+                            {tologup? <h4>Registrate</h4> : <h4>Ingresá</h4>}{'como ' + actualrole[0]}
+                        </div>
                         <button className="buttonrol" onClick={changeRol}>Soy {actualrole[1]}</button>
                     </div>
 
@@ -177,8 +177,8 @@ export default function Logup(){
                     <div className={errors.p ? "errors" : "noterr"} >
                         {errors.p? errors.p : 'ok'}
                     </div>
-
-                    { tologup &&
+                    
+                    { tologup && foruser &&
                     <div>
                         <Teams setTeam={setTeam} />
                         <div className={errors.t ? "errors" : "noterr"} >{errors.t? teamtext : 'ok'} </div>

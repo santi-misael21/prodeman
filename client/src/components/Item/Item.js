@@ -47,7 +47,7 @@ export function DefinePages (catsVisit, binaries) {
 
     qué debe sacar -> una array con ocho binarios, cada uno representa una página, completa o no -> [0,0, 0,0, 0,0, 0,0]
      */
-    // console.log(catsVisit.categories)
+    console.log(catsVisit)
     let bins = []
     for(let i=0; i< catsVisit.categories.length; i++){
         bins[i] = 1

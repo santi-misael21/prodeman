@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import '../estilos/item.css';
-import { postNotation, writeCategories } from "../redux/actions";
+import { getVisitByID, postNotation, writeCategories } from "../redux/actions";
 import { CATEGORIES } from "./Data";
 import { Detection } from "./Item/Item";
 
@@ -12,13 +12,13 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 
 	console.log(category, subcategory, includePhoto, go, userid, notation)
 	// // Local:
-	let [aff, setAff] = useState({})
-	let [neg, setNeg] = useState({})
+	// let [aff, setAff] = useState({})
+	// let [neg, setNeg] = useState({})
 	// let [text, setText] = useState({})
-	let [saved, setSaved] = useState({})
-	let [editt, setEdit] = useState({})
+	let [saved, setSaved] = useState({val: undefined, go, category, subcategory})
+	let [editt, setEdit] = useState({val: undefined, go, category, subcategory})
 	// let [send, setSend] = useState({})
-
+	// console.log('IMPORTANT LINE -> aff: ', aff)
 	// let [detector, setDetector] = useState([])
 	// let [detec, setDetec] = useState({})
 
@@ -28,10 +28,10 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 	// // Redux:
 	let dispatch= useDispatch()
 	let admin = useSelector(state=> state.admin)
-	// let catsVisit = useSelector(state=> state.visit)
+	let catsVisit = useSelector(state=> state.visit)
 	// let catsVisits = useSelector(state=> state.visits) // SIN HACER MOVIMIENTOS ACÁ ADENTRO, TIENE ACTUALIZS
 	// // QUIÉN TRAJO A ESTE TIPO, QUIÉN LE ENSEÑÓ LO QUE SABE, 'esa es la cuestión' escribió un tal will
-	let catsVisit= visit[0]
+	// let catsVisit= visit[0]
 	console.log(catsVisit, 
 		// catsVisits, catsubcatIds
 		)
@@ -70,127 +70,176 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
    //  // console.log(catsVisit)
 	let invert, invSaved
 
-	useEffect(()=>{
-		// if(Object.keys(catsVisit).length && catsVisit.id && !Object.keys(aff).length && !Object.keys(neg).length ){
-		// if(catsVisits.length && Object.keys(catsVisits[catsVisits.length-1]).length && catsVisits[catsVisits.length-1].id && !Object.keys(aff).length && !Object.keys(neg).length){
-		if(notation){
-			if(notation.notation === undefined) invert = undefined
-			if(notation.notation === false) invert = true
-			if(notation.notation === true) invert = false
-			if(notation.saved === undefined) invSaved = undefined
-			if(notation.saved === false) invSaved = true
-			if(notation.saved === true) invSaved = false
+	// useEffect(()=>{
+	// 	// if(Object.keys(catsVisit).length && catsVisit.id && !Object.keys(aff).length && !Object.keys(neg).length ){
+	// 	// if(catsVisits.length && Object.keys(catsVisits[catsVisits.length-1]).length && catsVisits[catsVisits.length-1].id && !Object.keys(aff).length && !Object.keys(neg).length){
+	// 	if(notation){
+	// 		if(notation.notation === undefined) invert = undefined
+	// 		if(notation.notation === false) invert = true
+	// 		if(notation.notation === true) invert = false
+	// 		if(notation.saved === undefined) invSaved = undefined
+	// 		if(notation.saved === false) invSaved = true
+	// 		if(notation.saved === true) invSaved = false
 
-			setAff({...aff, [go]: {val: notation.notation, category, subcategory}})
-			setNeg({...neg, [go]: {val: invert, category, subcategory}})
-			setSaved({...saved, [go]: {val: notation.saved, category, subcategory}}) //Agrego este comando
-			setEdit({...editt, [go]: {val: invSaved, category, subcategory}}) //Agrego este comando
-			// setText({...text, [go]: {val: notation.observations, category, subcategory}})
-		}
-	},[])
+	// 		setAff({...aff, [go]: {val: notation.notation, category, subcategory}})
+	// 		setNeg({...neg, [go]: {val: invert, category, subcategory}})
+	// 		setSaved({...saved, [go]: {val: notation.saved, category, subcategory}}) //Agrego este comando
+	// 		setEdit({...editt, [go]: {val: invSaved, category, subcategory}}) //Agrego este comando
+	// 		// setText({...text, [go]: {val: notation.observations, category, subcategory}})
+	// 	}
+	// },[])
 
-	let cgyes=undefined,cgno=undefined
-	if(aff[go] && aff[go].val) cgyes = aff[go].val
-	if(neg[go] && neg[go].val) cgno = neg[go].val
+	// let cgyes=undefined,cgno=undefined
+	// if(aff[go] && aff[go].val) cgyes = aff[go].val
+	// if(neg[go] && neg[go].val) cgno = neg[go].val
 
-	useEffect(()=>{
-		// if(Object.keys(catsVisit).length){
-			// for(let i= 0; i< catsVisit.categories.length; i++){
-			// 	if(catsVisit.categories[i].name===category){
+	// useEffect(()=>{
+	// 	// if(Object.keys(catsVisit).length){
+	// 		// for(let i= 0; i< catsVisit.categories.length; i++){
+	// 		// 	if(catsVisit.categories[i].name===category){
 
-					if (aff[go] && neg[go] && !neg[go].val && !aff[go].val) { // si ambos son false
-						catsVisit.categories[go][subcategory].notation= undefined
-						// console.log('pre dispatch aff neg')
-						dispatch(writeCategories(catsVisit.categories))
-						// console.log('post dispatch aff neg')
-					}
+	// 				if (aff[go] && neg[go] && !neg[go].val && !aff[go].val) { // si ambos son false
+	// 					catsVisit.categories[go][subcategory].notation= undefined
+	// 					// console.log('pre dispatch aff neg')
+	// 					dispatch(writeCategories(catsVisit.categories))
+	// 					// console.log('post dispatch aff neg')
+	// 				}
 
-					else if(aff[go] && aff[go].val){ // si aff es true
-						catsVisit.categories[go][subcategory].notation= true
-						// console.log('pre dispatch aff neg')
-						dispatch(writeCategories(catsVisit.categories))
-						// console.log('post dispatch aff neg')
-					}
+	// 				else if(aff[go] && aff[go].val){ // si aff es true
+	// 					catsVisit.categories[go][subcategory].notation= true
+	// 					// console.log('pre dispatch aff neg')
+	// 					dispatch(writeCategories(catsVisit.categories))
+	// 					// console.log('post dispatch aff neg')
+	// 				}
 
-					else if(neg[go] && neg[go].val){ // si neg es true 
-						catsVisit.categories[go][subcategory].notation= false
-						// console.log('pre dispatch aff neg')
-						dispatch(writeCategories(catsVisit.categories))
-						// console.log('post dispatch aff neg')
-					}
-					// neg[go].val && aff[go].val {/*nunca podrían darse */} 
-			// 	};
-			// }
-		// };
-	},[cgyes, cgno]);
+	// 				else if(neg[go] && neg[go].val){ // si neg es true 
+	// 					catsVisit.categories[go][subcategory].notation= false
+	// 					// console.log('pre dispatch aff neg')
+	// 					dispatch(writeCategories(catsVisit.categories))
+	// 					// console.log('post dispatch aff neg')
+	// 				}
+	// 				// neg[go].val && aff[go].val {/*nunca podrían darse */} 
+	// 		// 	};
+	// 		// }
+	// 	// };
+	// },[cgyes, cgno]);
 
-	let sav=undefined, edt=undefined
-	if(saved[go] && saved[go].val) sav= saved[go].val;
-	if(editt[go] && editt[go].val) edt= editt[go].val;
+	// let sav=undefined, edt=undefined
+	// if(saved[go] && saved[go].val) sav= saved[go].val;
+	// if(editt[go] && editt[go].val) edt= editt[go].val;
 
-	useEffect(()=>{
+	// useEffect(()=>{
 		
-		console.log(saved[go], editt[go])
+	// 	console.log(saved[go], editt[go])
 
-		if(saved[go] && saved[go].val){ // si sav es true
-			catsVisit.categories[go][subcategory].saved= true
-			// console.log('pre dispatch')
-			// dispatch(writeCategories(catsVisit.categories))
-			// setSend({...send, [go]: { val: true, category, subcategory }})
-			dispatch(writeCategories(catsVisit.categories))
-			dispatch(postNotation({
-				Note: notation.notation,
-				Observations: notation.observations,
-				catName: category,
-				subName: subcategory,
-				saved: notation.saved,
-				visitId: catsVisit.id,
-			}));
-		}
+	// 	if(saved[go] && saved[go].val){ // si sav es true
+	// 		catsVisit.categories[go][subcategory].saved= true
+	// 		// console.log('pre dispatch')
+	// 		// dispatch(writeCategories(catsVisit.categories))
+	// 		// setSend({...send, [go]: { val: true, category, subcategory }})
+	// 		dispatch(writeCategories(catsVisit.categories))
+	// 		dispatch(postNotation({
+	// 			Note: notation.notation,
+	// 			Observations: notation.observations,
+	// 			catName: category,
+	// 			subName: subcategory,
+	// 			saved: notation.saved,
+	// 			visitId: catsVisit.id,
+	// 		}));
+	// 	}
 
-		else if(editt[go] && editt[go].val){ // si edt es true 
-			catsVisit.categories[go][subcategory].saved= false
-			// console.log('pre dispatch')
-			// dispatch(writeCategories(catsVisit.categories))
-			// setSend({...send, [go]: { val: true, category, subcategory }})
-			dispatch(writeCategories(catsVisit.categories))
-			dispatch(postNotation({ // SI está escuchando a Redux debería andar
-				Note: notation.notation,
-				Observations: notation.observations,
-				catName: category,
-				subName: subcategory,
-				saved: notation.saved,
-				visitId: catsVisit.id,
-			}));
-		}
+	// 	else if(editt[go] && editt[go].val){ // si edt es true 
+	// 		catsVisit.categories[go][subcategory].saved= false
+	// 		// console.log('pre dispatch')
+	// 		// dispatch(writeCategories(catsVisit.categories))
+	// 		// setSend({...send, [go]: { val: true, category, subcategory }})
+	// 		dispatch(writeCategories(catsVisit.categories))
+	// 		dispatch(postNotation({ // SI está escuchando a Redux debería andar
+	// 			Note: notation.notation,
+	// 			Observations: notation.observations,
+	// 			catName: category,
+	// 			subName: subcategory,
+	// 			saved: notation.saved,
+	// 			visitId: catsVisit.id,
+	// 		}));
+	// 	}
 
-	}, [sav, edt]);
+	// }, [sav, edt]);
 
 
 	function yes(){
-		if(admin.id || saved[go] && saved[go].val) return
-		// Local:
-		if (aff[go] && aff[go]['val'] ) {
-			setAff({...aff, [go]: {val: false, category, subcategory}})
-			setNeg({...neg, [go]: {val: false, category, subcategory}})
+
+		// if (aff[go] && neg[go] && !neg[go].val && !aff[go].val) { // si ambos son false || si es undefined
+		if(notation && notation.notation === undefined){
+			catsVisit.categories[go][subcategory].notation= true
+			// console.log('pre dispatch aff neg')
+			return dispatch(writeCategories(catsVisit.categories))
+			// console.log('post dispatch aff neg')
 		}
-		else {
-			setAff({...aff, [go]: {val: true, category, subcategory}})
-			setNeg({...neg, [go]: {val: false, category, subcategory}})
+
+		// else if(aff[go] && aff[go].val){ // si aff es true || si es true
+		else if(notation && notation.notation){
+			// return
+			catsVisit.categories[go][subcategory].notation= undefined
+			// console.log('pre dispatch aff neg')
+			return dispatch(writeCategories(catsVisit.categories))
+			// console.log('post dispatch aff neg')
 		}
+
+		// else if(neg[go] && neg[go].val){ // si neg es true || si es false (siempre hablando de .notation)
+		else if(notation && notation.notation === false){
+			catsVisit.categories[go][subcategory].notation= true
+			// console.log('pre dispatch aff neg')
+			return dispatch(writeCategories(catsVisit.categories))
+			// console.log('post dispatch aff neg')
+		}
+		// if(admin.id || saved[go] && saved[go].val) return
+		// // Local:
+		// if (aff[go] && aff[go]['val'] ) {
+		// 	setAff({...aff, [go]: {val: false, category, subcategory}})
+		// 	setNeg({...neg, [go]: {val: false, category, subcategory}})
+		// }
+		// else {
+		// 	setAff({...aff, [go]: {val: true, category, subcategory}})
+		// 	setNeg({...neg, [go]: {val: false, category, subcategory}})
+		// }
 	};
 	function no(){
-		if(admin.id || saved[go] && saved[go].val) return
+
+		if(notation && notation.notation === undefined){
+			catsVisit.categories[go][subcategory].notation= false
+			// console.log('pre dispatch aff neg')
+			return dispatch(writeCategories(catsVisit.categories))
+			// console.log('post dispatch aff neg')
+		}
+
+		// else if(aff[go] && aff[go].val){ // si aff es true || si es true
+		else if(notation && notation.notation){
+			catsVisit.categories[go][subcategory].notation= false
+			// console.log('pre dispatch aff neg')
+			return dispatch(writeCategories(catsVisit.categories))
+			// console.log('post dispatch aff neg')
+		}
+
+		else if(notation && notation.notation === false){
+			catsVisit.categories[go][subcategory].notation= undefined
+			// console.log('pre dispatch aff neg')
+			return dispatch(writeCategories(catsVisit.categories))
+			// console.log('post dispatch aff neg')
+		}
+		// if(admin.id || saved[go] && saved[go].val) return
 		// Local:
-		if (neg[go] && neg[go]['val']) {
-			setNeg({...neg, [go]: {val: false, category, subcategory}})
-			setAff({...aff, [go]: {val: false, category, subcategory}})
-		}
-		else {
-			setNeg({...neg, [go]: {val: true, category, subcategory}})
-			setAff({...aff, [go]: {val: false, category, subcategory}})
-		}
+		// if (neg[go] && neg[go]['val']) {
+			// setNeg({...neg, [go]: {val: false, category, subcategory}})
+			// setAff({...aff, [go]: {val: false, category, subcategory}})
+		// }
+		// else {
+			// setNeg({...neg, [go]: {val: true, category, subcategory}})
+			// setAff({...aff, [go]: {val: false, category, subcategory}})
+		// }
 	};
+
+	// ZONA
 
 	// function handText(e){
 	// 	let val = e.target.value
@@ -203,12 +252,31 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 	// 	}
 	// };
 
+	// El useEffect para actualizar tras un postNotation
+	// useEffect(()=>{
+	// 	dispatch(getVisitByID(visit[0].id))
+	// },[saved.val]) // Siempre trayendo de la base de datos. Así debería ser, ¿basta con esto?
+
 	function save(){
-		if(saved[go] && saved[go].val) return
-		// else {
-			setSaved({...saved, [go]: {val: true, category, subcategory}});
-			setEdit({...editt, [go]: {val: false, category, subcategory}});
-		// }
+		catsVisit.categories[go][subcategory].saved= true
+		// console.log('pre dispatch')
+		// dispatch(writeCategories(catsVisit.categories))
+		// setSend({...send, [go]: { val: true, category, subcategory }})
+		dispatch(writeCategories(catsVisit.categories))
+		dispatch(postNotation({
+			Note: notation.notation,
+			Observations: notation.observations,
+			catName: category,
+			subName: subcategory,
+			saved: notation.saved, // ¿Es Redux instantáneo e inmediato?
+			visitId: catsVisit.id, 
+		}));
+		return setSaved({val: true,  go, category, subcategory})
+		// if(saved[go] && saved[go].val) return
+		// // else {
+		// 	setSaved({...saved, [go]: {val: true, category, subcategory}});
+		// 	setEdit({...editt, [go]: {val: false, category, subcategory}});
+		// // }
 	// 	for(let i= 0; i< catsVisits[catsVisits.length-1].categories.length; i++){
 	// 		if(catsVisits[catsVisits.length-1].categories[i].name===category){
 	// 			dispatch(postNotation({
@@ -225,11 +293,26 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 	};
 
 	function edit(){
-		if(editt[go] && editt[go].val) return
-		else {
-			setSaved({...saved, [go]: {val: false, category, subcategory}});
-			setEdit({...editt, [go]: {val: true, category, subcategory}});
-		}
+		catsVisit.categories[go][subcategory].saved= false
+		// console.log('pre dispatch')
+		// dispatch(writeCategories(catsVisit.categories))
+		// setSend({...send, [go]: { val: true, category, subcategory }})
+		dispatch(writeCategories(catsVisit.categories))
+		dispatch(postNotation({
+			Note: notation.notation,
+			Observations: notation.observations,
+			catName: category,
+			subName: subcategory,
+			saved: notation.saved,
+			visitId: catsVisit.id,
+		}));
+		return setSaved({val: false,  go, category, subcategory})
+
+	// 	if(editt[go] && editt[go].val) return
+	// 	else {
+	// 		setSaved({...saved, [go]: {val: false, category, subcategory}});
+	// 		setEdit({...editt, [go]: {val: true, category, subcategory}});
+	// 	}
 	};
 
 	// let snd = undefined
@@ -287,10 +370,11 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 					Sí
 					<input type='checkbox' 
 						// checked={(aff[go] && aff[go]['val']) || false /*Checed by local state */} 
-						checked={notation && notation.notation || false}
+						checked={notation && notation.notation === true ? true : false}
 						// checked= {catsVisits.length && catsVisits[catsVisits.length-1].categories.length && catsVisits.length && catsVisits[catsVisits.length-1].categories[go][subcategory].notation || false /*Old checked way */}
-						onChange={()=>yes()} 
+						// onClick={()=>yes()} 
 						// disabled= { saved[go] && saved[go]['val']}
+						readOnly
 						disabled={admin.id || (notation && notation.saved) || false}
 					/>
 			</div>
@@ -305,9 +389,10 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 					<input type='checkbox' 
 						// checked={(neg[go] && neg[go]['val']) || false /*checked por local state */} 
 						// checked= {catsVisits.length && catsVisits[catsVisits.length-1].categories.length && catsVisits.length && catsVisits[catsVisits.length-1].categories[go][subcategory].notation===false || false /*checked old way */}
-						checked={notation && notation.notation===false || false}
-						onChange={()=>no()} 
+						checked={notation && notation.notation===false ? true : false}
+						// onClick={()=>no()} 
 						// disabled= { saved[go] && saved[go]['val']}
+						readOnly
 						disabled={admin.id || (notation && notation.saved) || false}
 					/>
 			</div>
@@ -332,7 +417,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 				onClick={edit} 
 				// disabled={catsVisits.length && catsVisits[catsVisits.length-1].categories.length && !catsVisits.length && catsVisits[catsVisits.length-1].categories[go][subcategory].saved || false}
 				//  disabled={ saved[go] && !saved[go]['val']} 
-				disabled = {notation && !notation.saved || false}
+				disabled = {(notation && !notation.saved) || false}
 				>
 				Editar 
 			</button>}
@@ -343,7 +428,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 				onClick={save} 
 				// disabled={catsVisits.length && catsVisits[catsVisits.length-1].categories.length && catsVisits.length && catsVisits[catsVisits.length-1].categories[go][subcategory].saved || false}
 				//  disabled={ saved[go] && saved[go]['val']}
-				disabled = {notation && notation.saved || false}
+				disabled = {(notation && notation.saved) || (notation && notation.notation) === undefined || false}
 				>
 				Guardar 
 			</button>}

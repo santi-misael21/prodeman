@@ -70,7 +70,7 @@ router.post('/define', async (req, res) => {
         // Un arreglo para la redevolución de los nombres al front
         let arr = [catName, subName]
 
-        console.log('catsubId',catsubId/*,'catsubId.dataValues.id',catsubId.dataValues.Id*/)
+        // console.log('catsubId',catsubId/*,'catsubId.dataValues.id',catsubId.dataValues.Id*/)
         // return res.status(201).json(arr)
 
         // CASO UPDATE
@@ -92,11 +92,17 @@ router.post('/define', async (req, res) => {
         if (findNot){
             let updatedNot = await notation.update({
                 saved,
+                Note,
+                Observations, // y todavía hay más para investigar nutrite de la música sentila de verdad
             }, {
                 where,
             })
+            let justUpdated = await notation.findOne({
+                where
+            })
             // y devolver al front el updating
-            let rr = {...updatedNot.dataValues, names: arr}
+            console.log(justUpdated)
+            let rr = {...justUpdated.dataValues, names: arr}
             return res.status(201).json(rr)
         }
 

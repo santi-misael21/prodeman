@@ -8,6 +8,7 @@ import Pages from "./Pages";
 import '../estilos/categ.css';
 import { useState } from "react";
 import { DefinePages, Detection } from "./Item/Item";
+import { Link } from "react-router-dom";
 
 
 export default function Categories(){
@@ -102,16 +103,23 @@ export default function Categories(){
     console.log('keysarrangd',keysArranged,'valuesarrangd',
         valuesArranged, visit)
 
-    if( ( rslt && !completed.length ) || ( visit && visit.categories.length && !completed.length ) ) {  
-        console.log(DefinePages(visit))
-        setCompleted(DefinePages(visit))
-    }        
+    useEffect(()=>{
+        if(rslt){
+            console.log('IMPORTANT, VER QUÉ CARAJO ES rslt AHORA: ', rslt)
+            let o= {categories: rslt}
+            setCompleted(DefinePages(o))
+        }
+    }, [visit, rslt]);
 
     return (
-        <div>{ visit && Object.keys(visit).length && visit.id?
+        <div>
+            { visit && Object.keys(visit).length && visit.id?
             <Nav Id={visit.id} Opening_date={visit.date} Closed={visit.closed} Team={visit.team} />:
             <Nav load={true}/>
             }
+
+            <Link to='/begin'> <u>Volver</u>
+            </Link>
             
             {completed.length > 0 && 
                 <Pages completed={completed} />

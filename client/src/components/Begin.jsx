@@ -101,8 +101,8 @@ export default function Begin(){
                 {/* <div className="check1" onClick={()=>t1()} id={team1 ? 'selected': ''}>Microinformática<input type='checkbox' checked={team1} onChange={()=>t1()}/></div>
                 <br></br>
                 <div className="check2" onClick={()=>t2()} id={team2 ? 'selected': ''}>Telecomunicaciones<input type='checkbox' checked={team2} onChange={()=>t2()}/></div>
-                <br></br> */}
-                <button className="beginbutton" onClick={confirm} > Iniciar una visita </button>
+                <br></br> */}{Object.keys(user).length > 0 &&
+                <button className="beginbutton" onClick={confirm} > Iniciar una visita </button>}
             </div>
         </div>
     )
