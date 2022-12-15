@@ -20,6 +20,7 @@ export const POST_ADMIN = "LOGIN_ADMIN";
 export const LOG_OUT = "LOG_OUT"
 export const GET_USERS = "GET_USERS";
 export const POST_NOTATION = "POST_NOTATION";
+export const CLOSE_VISIT = "CLOSE_VISIT";
 
 // export const getLastVisit = () => { // Te devuelve el objeto de la última visita en la base de datos
 //     return async function (dispatch) { // Dada la creación de perfiles, no tendrá sentido esta ruta
@@ -217,6 +218,16 @@ export const postNotation = (notation) => {
             ...notation
         }).then(r=> dispatch({
             type: POST_NOTATION,
+            payload: r.data,
+        })).catch(e=> console.log(e))
+    }
+};
+
+export const closeVisit = (data) => {
+    return async function (dispatch) {
+        axios.put(`http://localhost:3001/visit/closing`, data)
+        .then(r=> dispatch({
+            type: CLOSE_VISIT,
             payload: r.data,
         })).catch(e=> console.log(e))
     }

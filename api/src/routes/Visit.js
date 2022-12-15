@@ -110,4 +110,47 @@ router.post('/visitid', async (req, res)=> { //postear una visita y a la vez ret
     }
 });
 
+router.put('/closing', async (req, res) => {
+
+    let {Id, userId, Closing_date, Closed} = req.body
+
+    try {
+        let where = {
+            Id, 
+            userId,
+        }
+
+        let visitFound = await visit.findOne({
+            where
+        })
+
+        if(visitFound.Closed) return res.status(200).json([Id, true, visitFound.Closing_date])
+
+        if(visitFound) {
+            let c = await visit.update({
+                Closed,
+                Closing_date,
+            }, {
+                where
+            })
+        }
+
+        let verifyBoolean = await visit.findOne({
+            where
+        })
+        let data = []
+        if(verifyBoolean.dataValues.Closed) {
+            data[0] = verifyBoolean.dataValues.Id
+            data[1] = verifyBoolean.dataValues.Closed
+            data[2] = verifyBoolean.dataValues.Closing_date
+        }
+
+        return res.status(200).json(data)
+
+    } catch (error) {
+        console.log(error)
+    }
+
+});
+
 module.exports= router

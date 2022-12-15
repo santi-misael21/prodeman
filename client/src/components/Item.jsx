@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import '../estilos/item.css';
 import { getVisitByID, postNotation, writeCategories } from "../redux/actions";
+import Camera from "./Cam/Camera";
 import { CATEGORIES } from "./Data";
 import { Detection } from "./Item/Item";
 
@@ -168,7 +169,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 
 
 	function yes(){
-
+		if(catsVisit.closed) return
 		// if (aff[go] && neg[go] && !neg[go].val && !aff[go].val) { // si ambos son false || si es undefined
 		if(notation && notation.notation === undefined){
 			catsVisit.categories[go][subcategory].notation= true
@@ -205,7 +206,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 		// }
 	};
 	function no(){
-
+		if(catsVisit.closed) return
 		if(notation && notation.notation === undefined){
 			catsVisit.categories[go][subcategory].notation= false
 			// console.log('pre dispatch aff neg')
@@ -241,16 +242,19 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 
 	// ZONA
 
-	// function handText(e){
-	// 	let val = e.target.value
-	// 	setText({...text, [go]: {val, category, subcategory}})
-	// 	for(let i= 0; i< catsVisits[catsVisits.length-1].categories.length; i++){
-	// 		if(catsVisits[catsVisits.length-1].categories[i].name===category){
-	// 			catsVisits[catsVisits.length-1].categories[i][subcategory].observations= val
-	// 			dispatch(writeCategories(catsVisits[catsVisits.length-1].categories))
-	// 		}
-	// 	}
-	// };
+	function handText(e){
+		let val = e.target.value
+		catsVisit.categories[go][subcategory].observations= val
+		dispatch(writeCategories(catsVisit.categories))
+		// setText({...text, [go]: {val, category, subcategory}})
+
+		// for(let i= 0; i< catsVisits[catsVisits.length-1].categories.length; i++){
+		// 	if(catsVisits[catsVisits.length-1].categories[i].name===category){
+		// 		catsVisits[catsVisits.length-1].categories[i][subcategory].observations= val
+		// 		dispatch(writeCategories(catsVisits[catsVisits.length-1].categories))
+		// 	}
+		// }
+	};
 
 	// El useEffect para actualizar tras un postNotation
 	// useEffect(()=>{
@@ -340,9 +344,10 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 	// // }, [snd]);
 
 
-	// function findValue(){
-	// 	if(catsVisits.length && catsVisits[catsVisits.length-1].categories.length && catsVisits[catsVisits.length-1].categories[go][subcategory].hasOwnProperty('observations')) return catsVisits[catsVisits.length-1].categories[go][subcategory].observations
-	// };
+	function findValue(){
+		if(notation) return notation.observations
+		return ''
+	};
 
 	// // function appear(){
 	// // 	if(catsVisit.categories.length && catsVisit.categories[go][subcategory].observations === undefined){
@@ -375,7 +380,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 						// onClick={()=>yes()} 
 						// disabled= { saved[go] && saved[go]['val']}
 						readOnly
-						disabled={admin.id || (notation && notation.saved) || false}
+						disabled={(catsVisit.closed) || admin.id || (notation && notation.saved) || false}
 					/>
 			</div>
 			<br></br>
@@ -393,23 +398,29 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 						// onClick={()=>no()} 
 						// disabled= { saved[go] && saved[go]['val']}
 						readOnly
-						disabled={admin.id || (notation && notation.saved) || false}
+						disabled={(catsVisit.closed) || admin.id || (notation && notation.saved) || false}
 					/>
 			</div>
-			{/* <br></br> */}
-			{/* <input 
+			<br></br>
+			<input 
 					id="in"
 					className="comment" 
 					onChange={(e)=> handText(e)} 
 					// onClick={appear}
-					disabled={ saved[go] && saved[go]['val']} 
+					// disabled={ saved[go] && saved[go]['val']} 
+					disabled={(catsVisit.closed) || admin.id || (notation && notation.saved) || false}
 					placeholder='Observaciones' 
 					// value={text[go]?text[go]: ''} 
-					// defaultValue='a'
+					// defaultValue={notation && notation.observations}
 					// defaultValue=''
-					value={findValue() || ''}
-			/> */}
+					// value={findValue()  || '' || false}
+					value={notation && typeof notation.observations === 'string' && notation.observations || ''}
+			/>
+			{/* <div>{notation && notation.observations}</div> */}
 			<br></br>
+
+			{!admin.id && includePhoto &&
+				<Camera/>}
 
 			{!admin.id && 
 			<button 
@@ -417,7 +428,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 				onClick={edit} 
 				// disabled={catsVisits.length && catsVisits[catsVisits.length-1].categories.length && !catsVisits.length && catsVisits[catsVisits.length-1].categories[go][subcategory].saved || false}
 				//  disabled={ saved[go] && !saved[go]['val']} 
-				disabled = {(notation && !notation.saved) || false}
+				disabled = {(catsVisit.closed)||(notation && !notation.saved) || false}
 				>
 				Editar 
 			</button>}
@@ -428,20 +439,21 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 				onClick={save} 
 				// disabled={catsVisits.length && catsVisits[catsVisits.length-1].categories.length && catsVisits.length && catsVisits[catsVisits.length-1].categories[go][subcategory].saved || false}
 				//  disabled={ saved[go] && saved[go]['val']}
-				disabled = {(notation && notation.saved) || (notation && notation.notation) === undefined || false}
+				disabled = {(catsVisit.closed)||(notation && notation.saved) || (notation && notation.notation) === undefined || false}
 				>
 				Guardar 
 			</button>}
 
-			{!admin.id && includePhoto &&
-			<div> Este ítem requiere una foto 
-					<button>
-						Adjuntar imagen
-					</button>
-					<button>
-						Tomar foto
-					</button>
-			</div>
+			{//!admin.id && includePhoto &&
+				//<Camera/>
+			// <div> Este ítem requiere una foto 
+			// 		<button>
+			// 			Adjuntar imagen
+			// 		</button>
+			// 		<button>
+			// 			Tomar foto
+			// 		</button>
+			// </div>
 			}
 		</div>
 		</div>

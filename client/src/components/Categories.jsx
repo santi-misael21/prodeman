@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cats_subs, getLastVisit, getVisitByID, writeCategories, writeCats, writeSubs } from "../redux/actions";
+import { cats_subs, closeVisit, getLastVisit, getVisitByID, writeCategories, writeCats, writeSubs } from "../redux/actions";
 import { CATEGORIES, CreateCatsRequired, SUBCATEGORIES, } from "./Data";
 import Item from "./Item";
 import Nav from "./Nav";
@@ -43,17 +43,30 @@ export default function Categories(){
 
     // Esta es la magistralidad que servirá para el perfil de Admin, acá no me deja guardar los valores:
     useEffect(()=>{ 
-        if(admin.hasOwnProperty('id')){
+        if(admin.hasOwnProperty('id')){ // Si el logeado es un admin 
             if(visit.id && rslt !== null){
-                disp(getVisitByID(visit.id))
+                disp(getVisitByID(visit.id)) // actualiza la visita 
             }
         }
-    },[go]);
+    },[go]); // cada vez que se cambia de página 
 
     useEffect(()=>{
         setRslt(Detection(visit, catsRequired))
-        // setSend(true)
-    },[visit])
+        // setSend(true) // Ante la primera aparición, por defecto,
+    },[visit]); // y ante cada cambio en el objeto visit, se actualiza la data que alimenta a cada Item.
+    // Por defecto, por cada actualización, hay auto-re-renderizado, no hace falta decirle nada. 
+
+    /* Comentario out of context tal vez: una vez que llega la visit hay que hacer los demás procesos -> 
+    ¿Cuáles son los demás procesos? -> 
+    Tarea pendiente -> 
+    Procesos que dependen de la visit ->
+    1. Se arma un arreglo de data, esa data tiene que tener lo último siempre;
+    2. Si la visit es inexistente, es decir, tiene el valor de initialState, no hay que renderizar nada;
+    3. Si la visit existe, aunque esté desactualizada, se renderiza, ya caerán las actualizaciones en segundos (esto porque todavía no sé como preguntarle si está actualizada);
+    => Entonces, punto 1, hay que evitar el renderizado explícitamente si todavía no hay visit, no sé,
+    porque estamos hablando de que no tiene que realizarse el proceso de armado de data hasta que no exista una visit, y eso ya estaría pasando. Yo diría dejarlo así por ahora. 
+        Creo que el doble componente en la parte del return, se soluciona condicionado el contenido del useEffect de arriba a si existe visit.id, probar no más. Desarrollar por qué ->
+    */
 
     // console.log('visit.team', visit.team)
 
@@ -124,6 +137,13 @@ export default function Categories(){
 
     function saveAll(){
         console.log('saveall')
+        let Closing_date = new Date();
+        disp(closeVisit({
+            Id: visit.Id,
+            userId: user.Id, 
+            Closing_date, 
+            Closed:true
+        }))
     }
 
     return (
@@ -136,7 +156,7 @@ export default function Categories(){
             <div style={{display: 'flex', color: "orange", justifyContent:'space-evenly'}}>
                 <Link to='/begin' style={style}> <button style={style}> <u>Volver</u> </button>
                 </Link>{ user.id && 
-                <button style={style} onClick={saveAll} disabled={!ready}><u>Concluir visita</u></button>}
+                <button style={style} onClick={saveAll} disabled={!ready || (!!visit.Closed)}><u>Concluir visita</u></button>}
             </div>
 
             {completed.length > 0 && 

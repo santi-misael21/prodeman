@@ -1,4 +1,4 @@
-import { CATS_SUBS, GET_ALL_VISITS, GET_TEAMS, GET_USER_VISITS, GET_VISIT_BYID, GET_VISIT_ID, LOGIN_ADMIN, LOGIN_USER, LOG_OUT, POST_ADMIN, POST_NOTATION, POST_TEAMS, POST_USER, SET_PAGE, STATUS_PAGES, WRITE, WRITECATS, WRITESUBS,  } from "../actions";
+import { CATS_SUBS, CLOSE_VISIT, GET_ALL_VISITS, GET_TEAMS, GET_USER_VISITS, GET_VISIT_BYID, GET_VISIT_ID, LOGIN_ADMIN, LOGIN_USER, LOG_OUT, POST_ADMIN, POST_NOTATION, POST_TEAMS, POST_USER, SET_PAGE, STATUS_PAGES, WRITE, WRITECATS, WRITESUBS,  } from "../actions";
 import { putCategories } from "./auxiliar";
 
 
@@ -13,6 +13,7 @@ const initialState= {
     visit: {
         id: undefined,
         date: undefined,
+        closedDate: undefined,
         categories: [],
         team: undefined,
         userId: undefined,
@@ -160,7 +161,19 @@ const rootReducer = (state= initialState, action)=>{
                 ...state,
                 user: action.payload,
                 admin: action.payload
-            }
+            };
+        case CLOSE_VISIT:
+            // ['visitId', 'boolean', 'closedDate']
+            console.log(action.payload[0], state.visit.id)
+            if(action.payload[0] !== state.visit.id) return {...state}
+            return {
+                ...state,
+                visit: {
+                    ...state.visit, 
+                    closed: action.payload[1],
+                    closedDate: action.payload[2],
+                }
+            };
 
         default: return state;
     };
