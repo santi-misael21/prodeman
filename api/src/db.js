@@ -8,6 +8,7 @@ const ModelVis = require ("./models/4-Visit.js");// cambios importantes
 const User = require("./models/5-User.js");// cambios importantes
 const Admin = require("./models/6-Admin.js");// cambios importantes
 const Team = require("./models/7-Team.js");
+const Image = require("./models/8-Image.js");
 
 const fs = require('fs');
 const path = require('path');
@@ -33,11 +34,12 @@ ModelCat_Subcat(sequelize);
 User(sequelize);
 Admin(sequelize);
 Team(sequelize);
+Image(sequelize);
 
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { category, subcategory, notation, visit, /*notation_visit,*/ cat_subcat, user, team } = sequelize.models; 
+const { category, subcategory, notation, visit, /*notation_visit,*/ cat_subcat, user, team, image } = sequelize.models; 
 // Aca vendrian las relaciones
 
 category.belongsToMany(subcategory, {through: cat_subcat});
@@ -54,6 +56,10 @@ user.belongsTo(team);
 
 user.hasMany(visit);
 visit.belongsTo(user);
+
+notation.hasMany(image);
+image.belongsTo(notation);
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

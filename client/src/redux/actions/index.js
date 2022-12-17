@@ -21,6 +21,8 @@ export const LOG_OUT = "LOG_OUT"
 export const GET_USERS = "GET_USERS";
 export const POST_NOTATION = "POST_NOTATION";
 export const CLOSE_VISIT = "CLOSE_VISIT";
+export const POST_IMAGE = "POST_IMAGE";
+export const GET_NOTATION = "GET_NOTATION";
 
 // export const getLastVisit = () => { // Te devuelve el objeto de la última visita en la base de datos
 //     return async function (dispatch) { // Dada la creación de perfiles, no tendrá sentido esta ruta
@@ -216,10 +218,12 @@ export const postNotation = (notation) => {
     return async function (dispatch) {
         axios.post(`http://localhost:3001/notations/define`,{
             ...notation
-        }).then(r=> dispatch({
+        }).then(r=> {
+            console.log(222, "LINEA IMPORTANTE", r.data)
+            dispatch({
             type: POST_NOTATION,
             payload: r.data,
-        })).catch(e=> console.log(e))
+        })}).catch(e=> console.log(e))
     }
 };
 
@@ -228,6 +232,26 @@ export const closeVisit = (data) => {
         axios.put(`http://localhost:3001/visit/closing`, data)
         .then(r=> dispatch({
             type: CLOSE_VISIT,
+            payload: r.data,
+        })).catch(e=> console.log(e))
+    }
+};
+
+export const postImage = (post) => { //{url, visitId}
+    return async function(dispatch){
+        axios.post(`http://localhost:3001/image/define`, post) 
+        .then(r=>dispatch({
+            type : POST_IMAGE,
+            payload: r.data,
+        })).catch(e=>console.log(e))
+    }
+};
+
+export const getNotation = (data) => {
+    return async function (dispatch) {
+        axios.post(`http://localhost:3001/notations/bydata`, data
+        ).then(r=>dispatch({
+            type: GET_NOTATION,
             payload: r.data,
         })).catch(e=> console.log(e))
     }

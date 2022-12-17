@@ -10,6 +10,7 @@ const usersRoutes = require ("./Users.js");
 const teamsRoutes = require ("./Teams.js");
 const notationsRoutes = require ("./Notation.js");
 const adminsRoutes = require ("./Admins.js");
+const imagesRoutes = require ("./Admins.js");
 
 const router = Router();
 
@@ -21,6 +22,7 @@ router.use("/users", usersRoutes);
 router.use("/teams", teamsRoutes);
 router.use("/notations", notationsRoutes);
 router.use("/admins", adminsRoutes);
+router.use("/image", imagesRoutes);
 
 module.exports = router;
 // Configurar los routers

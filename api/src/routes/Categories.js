@@ -30,6 +30,7 @@ router.post('/define', async (req,res)=>{
 
     if(cats.length) return res.status(300).json('cats alreadyFull')
 
+    console.log('names', names)
     function retProm(names){
         names.map((Nombre,i)=> resp.push(category.create({
             Nombre
@@ -51,7 +52,7 @@ router.post('/define', async (req,res)=>{
         }
 
     } catch (error) {
-        console.log(error) 
+        console.log('error categories') 
     }
 
 })

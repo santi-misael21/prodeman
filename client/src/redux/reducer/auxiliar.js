@@ -16,6 +16,11 @@ export function putCategories(notations){ // [...allNotations]
                         catsRequired[a][prop].notation = notations[e].Note;
                         catsRequired[a][prop].observations = notations[e].Observations;
                         catsRequired[a][prop].saved = notations[e].saved;
+                        if(notations[e].hasOwnProperty("Image") && notations[e].Image !== null){
+                            catsRequired[a][prop].photo = notations[e].Image
+                        }
+                        // catsRequired[a][prop].images = undefined;
+
                         // console.log(`catsRequired[${a}]: `,catsRequired[a], `notations[${e}]:`, notations[e])
                     }
                 }
@@ -32,6 +37,12 @@ export function putCategories(notations){ // [...allNotations]
     return catsRequired;
 
 };
+
+function putImages () { // la imagen devuelve su: id, url, notationId,
+                        // tenés que instertar esa url en visit.categories[i][sub].
+                        //
+
+}
 
 /* PARAMETER
     "notations": [

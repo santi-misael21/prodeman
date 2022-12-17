@@ -10,7 +10,11 @@ export function Detection(catsVisit, catsRequired){ // Para saber si la visita q
 			for (let prop in catsVisit.categories[i]){
 				let not = catsVisit.categories[i][prop].notation
 				let obs = catsVisit.categories[i][prop].observations
-				if( not !== undefined|| obs !==undefined) {
+                let pht 
+				if(catsVisit.categories[i][prop].hasOwnProperty('photo') && catsVisit.categories[i][prop] !== null) {
+                    pht = catsVisit.categories[i][prop].photo
+                }
+				if( not !== undefined|| obs !==undefined || pht !==undefined) {
                     // detector[i].categ = catsVisit.categories[i].name;
                     detector[i] = {...catsVisit.categories[i]};
                     // detector[i].atomic.push({

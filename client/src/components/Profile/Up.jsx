@@ -95,7 +95,7 @@ export default function Logup(){
     
     //Here team consologs twice
     function disab(){
-        return abled()
+        return abled(tologup, tologin, errors)
     }
 
     function submit(){ // user = {teamname, username, password,}
@@ -136,6 +136,9 @@ export default function Logup(){
         setAdmin(!foradmin)
     }
 
+    let color1= foruser? '' : 'yellow';
+    let color2= foruser? 'yellow' : '';
+
     return (
         <div>
             <Nav noparams={true}/>
@@ -149,45 +152,58 @@ export default function Logup(){
 
                 <div className="upright">
 
-                    <div className="changerol">
-                        <div className="headerright">
-                            {tologup? <h4>Registrate</h4> : <h4>Ingresá</h4>}{'como ' + actualrole[0]}
-                        </div>
-                        <button className="buttonrol" onClick={changeRol}>Soy {actualrole[1]}</button>
-                    </div>
-
-                    <div>Nombre</div>
-                    <input  
-                        className="beginbutton" 
-                        placeholder='Nombre' 
-                        name="username" 
-                        value={input.username} 
-                        onChange={(e)=>change(e)}
-                    />
-                    <div className={errors.n ? "errors" : "noterr"} >
-                        {errors.n? errors.n : 'ok'}
-                    </div>
-
-                    <div>Contraseña</div>
-                    <input  
-                        className="beginbutton" placeholder='Contraseña' 
-                        type='password' name="password" 
-                        value={input.password} onChange={(e)=>change(e)}
-                    />
-                    <div className={errors.p ? "errors" : "noterr"} >
-                        {errors.p? errors.p : 'ok'}
-                    </div>
                     
-                    { tologup && foruser &&
-                    <div>
-                        <Teams setTeam={setTeam} />
-                        <div className={errors.t ? "errors" : "noterr"} >{errors.t? teamtext : 'ok'} </div>
-                        <br></br>
-                    </div> }
+                    <div className="changerol">
+                        {/* <button className="buttonrol" onClick={changeRol}>Soy {actualrole[1]}</button> */}
+                        {/* <div  > */}
+                            <p className="t">Elegí tu función</p>
+                            {/* </div> */}
+                        <div id="elect" onClick={changeRol} >
+                            <i>Administrador</i> <input className="inputhover" type='checkbox' checked={foradmin && !foruser} readOnly />
+                        </div>
+                        <div id="elect" onClick={changeRol} >
+                            <i>Usuario</i> <input className="inputhover" type='checkbox' checked={foruser && ! foradmin} readOnly/>
+                        </div>
+                    </div>
 
-                    <button className="beginbutton" onClick={submit}  disabled={disab()}>
-                        {tologup?'Crear perfil':'Ingresar'}
-                    </button>
+                    <div className="changerol">
+                        <p className="headerright">
+                            {tologup? 'Registrate ' /*para poder realizar relevamientos*/ : 'Ingresá '}{'como ' + actualrole[0]}
+                        </p>
+
+                        <div>Nombre</div>
+                        <input  
+                            className="beginbutton" 
+                            placeholder='Nombre' 
+                            name="username" 
+                            value={input.username} 
+                            onChange={(e)=>change(e)}
+                        />
+                        <div className={errors.n ? "errors" : "noterr"} >
+                            {errors.n? errors.n : 'ok'}
+                        </div>
+
+                        <div>Contraseña</div>
+                        <input  
+                            className="beginbutton" placeholder='Contraseña' 
+                            type='password' name="password" 
+                            value={input.password} onChange={(e)=>change(e)}
+                        />
+                        <div className={errors.p ? "errors" : "noterr"} >
+                            {errors.p? errors.p : 'ok'}
+                        </div>
+
+                        { tologup && foruser &&
+                        <div>
+                            <Teams setTeam={setTeam} team={team}/>
+                            <div className={errors.t ? "errors" : "noterr"} >{errors.t? teamtext : 'ok'} </div>
+                            <br></br>
+                        </div> }
+
+                        <button className="beginbutton" onClick={submit}  disabled={disab()}>
+                            {tologup?'Crear perfil':'Ingresar'}
+                        </button>
+                    </div>
 
                     <p>{tologup? '¿Ya' : '¿Todavía no'} tenés una cuenta?</p>
 

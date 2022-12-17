@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import '../estilos/begin.css';
-import '../estilos/item.css';
+// import '../estilos/item.css';
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux';
 import { getVisitID, loginAdmin, loginUser, logOut } from "../redux/actions";

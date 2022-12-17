@@ -10,7 +10,7 @@ const axios = require('axios').default;
 router.post('/define', async (req, res)=>{
 
     let {objectsInArray} = req.body
-
+    console.log('objectsInArray', objectsInArray)
     let relations = await cat_subcat.findAll()
     if(relations.length) return res.status(200).json(relations)
 
@@ -29,6 +29,7 @@ router.post('/define', async (req, res)=>{
             
             for(let i= 0; i< objectsInArray.length; i++){
                 let Nombre= objectsInArray[i].name
+                console.log('loop linea 32 cat_subcat', Nombre)
                 let catAsked= await category.findOne({
                     where: {
                         Nombre,
@@ -39,6 +40,7 @@ router.post('/define', async (req, res)=>{
                 for (let loop in objectsInArray[i]){
                     if(loop!=='name'){
 
+                        console.log('loop linea 32 cat_subcat', loop)
                         let subAsked= await subcategory.findOne({
                             where: {
                                 Nombre: loop
@@ -60,7 +62,7 @@ router.post('/define', async (req, res)=>{
         return res.status(201).json('algo salió mal')
 
     } catch (error) {
-        console.log(error)
+        console.log('error catsubcat')
     }
 
 });

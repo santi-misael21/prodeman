@@ -27,7 +27,7 @@ export function createCategory(name, orden, limpieza, AP, telefono, ups, pc, cab
 
     // let catRedux //= Buscamos el objeto de categs
     let basicObject= { notation: undefined, observations: '', saved: undefined } //Agrego saved
-    let fotoObject= {photo: undefined}
+    let fotoObject= {photo: undefined} //{photo: []}
 
     let newCat= {
         name, 

@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';//Considerar uso
 import { Provider } from 'react-redux';//Se importa Provider
 import store from './redux/newstore/index.js';//Se importa a nuestro store
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/index.css';
 
 ReactDOM.render( //Punto 0: se dice que la propiedad store de Provider (la auténtica)
 //tendrá como valor a nuestro store

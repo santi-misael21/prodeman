@@ -32,7 +32,7 @@ console.log(req.body)
         return res.status(200).json('Incorrect password')
 
     } catch (error) {
-        console.log(error)        
+        console.log('users error')        
     }
 });
 
@@ -62,7 +62,7 @@ router.post('/create', async (req, res) => {
         return res.status(201).json(createdUser.dataValues)
         
     } catch (error) {
-        console.log(error)
+        console.log('users2 error')
     }
 
 });

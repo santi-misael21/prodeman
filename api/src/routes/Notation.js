@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const { Op, } = require("../db");
 
-const { category, subcategory, notation, visit, notation_visit, cat_subcat } = require('../db.js');
+const { category, subcategory, notation, cat_subcat, visit, notation_visit} = require('../db.js');
 
 const axios = require('axios').default;
 
@@ -17,9 +17,48 @@ router.get('/all', async(req, res) => {
     }
 });
 
+router.post('/bydata', async (req, res) => {
+    let {catName, subName} = req.body
+
+    console.log(req.body)
+    try {
+        
+        let catId = await category.findOne({
+            where: {
+                Nombre: catName
+            }
+        });
+        // Y hallar el objeto {} de la subcategoría indicada #
+        let subId = await subcategory.findOne({
+            where: {
+                Nombre: subName
+            }
+        });
+        // * Para hallar el id de tal categoría 
+        let categoryId
+        if(catId) categoryId = catId.id
+        if(!categoryId) return res.status(202).json("Probably category model empty")
+        // # Y el id de tal subcategoría, respectivamente
+        let subcategoryId = subId.id
+
+        // *# Para dar con el id de esa relación
+        let catsubId = await cat_subcat.findOne({
+            where: {
+                categoryId,
+                subcategoryId
+            }
+        }); 
+        return res.status(200).json(catsubId)
+
+    } catch (error) {
+        console.log('notat error')
+    }
+
+});
+
 router.post('/define', async (req, res) => {
 
-    let { /*Id,*/ Note, Observations, /*Image,*/ visitId, /*catSubcatId,*/ catName, subName, saved } = req.body
+    let { /*Id,*/ Note, Observations, Image, visitId, /*catSubcatId,*/ catName, subName, saved } = req.body
     console.log(req.body, typeof catName, typeof subName, catName, subName, req.body.catName, req.body.subName)
 
     // let {catName, subName} = req.query
@@ -88,12 +127,19 @@ router.post('/define', async (req, res) => {
             where,
         })
 
+        let object = {
+            saved,
+            Note,
+            Observations, }
+        if(Image !== null ) object= {
+            ...object,
+            Image
+        }
+
         // si así es, tocaría hacer un update
         if (findNot){
             let updatedNot = await notation.update({
-                saved,
-                Note,
-                Observations, // y todavía hay más para investigar nutrite de la música sentila de verdad
+                ...object, // y todavía hay más para investigar nutrite de la música sentila de verdad
             }, {
                 where,
             })
@@ -108,7 +154,7 @@ router.post('/define', async (req, res) => {
 
         // Si no hay que hacer update, hay que hacer create: la fila aún no existe
         let createdNotation = await notation.create({
-            Note, Observations, visitId, catSubcatId: catsubId.Id, saved
+            ...object, visitId, catSubcatId: catsubId.Id, 
         })
 
         // CASO DELETE PARA FILAS REPETIDAS 
@@ -138,7 +184,7 @@ router.post('/define', async (req, res) => {
         return res.status(201).json(r)
         
     } catch (error) {
-        console.log(error)
+        console.log('notat2 error', error)
     }
 })
 

@@ -1,4 +1,4 @@
-import { CATS_SUBS, CLOSE_VISIT, GET_ALL_VISITS, GET_TEAMS, GET_USER_VISITS, GET_VISIT_BYID, GET_VISIT_ID, LOGIN_ADMIN, LOGIN_USER, LOG_OUT, POST_ADMIN, POST_NOTATION, POST_TEAMS, POST_USER, SET_PAGE, STATUS_PAGES, WRITE, WRITECATS, WRITESUBS,  } from "../actions";
+import { CATS_SUBS, CLOSE_VISIT, GET_ALL_VISITS, GET_NOTATION, GET_TEAMS, GET_USER_VISITS, GET_VISIT_BYID, GET_VISIT_ID, LOGIN_ADMIN, LOGIN_USER, LOG_OUT, POST_ADMIN, POST_IMAGE, POST_NOTATION, POST_TEAMS, POST_USER, SET_PAGE, STATUS_PAGES, WRITE, WRITECATS, WRITESUBS,  } from "../actions";
 import { putCategories } from "./auxiliar";
 
 
@@ -22,6 +22,7 @@ const initialState= {
     actualPage: 0,
     statusPages: [0,0, 0,0, 0,0, 0,0], //un booleano por cada página completa o no completa (8)
     visitsList: [],
+    notation: {},
 };
 
 
@@ -132,12 +133,14 @@ const rootReducer = (state= initialState, action)=>{
                 user: action.payload,
             };
         case POST_NOTATION:
-            let index
+            console.log(action.payload)
             state.visit.categories.map((c,i)=>{
                 if(c.name === action.payload.names[0]){
-                    index = i
                     c[action.payload.names[1]].notation = action.payload.Note
                     c[action.payload.names[1]].observations = action.payload.Observations
+                    if(action.payload.Image !== null){
+                        c[action.payload.names[1]].photo = action.payload.Image
+                    }
                 }
             })
             // let visits = [{...state.visit}]
@@ -173,6 +176,19 @@ const rootReducer = (state= initialState, action)=>{
                     closed: action.payload[1],
                     closedDate: action.payload[2],
                 }
+            };
+        case POST_IMAGE:
+            return {
+                ...state,
+                visit: {
+                    ...state.visit,
+                    
+                }
+            };
+        case GET_NOTATION:
+            return {
+                ...state,
+                notation: action.payload,
             };
 
         default: return state;

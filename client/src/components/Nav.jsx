@@ -1,5 +1,5 @@
 import React from "react";
-import '../estilos/nav.css';
+// import '../estilos/nav.css';
 
 export default function Nav({Team, Opening_date, Id, Closed, load, noparams}){
 

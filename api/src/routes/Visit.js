@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
             let subcategoryFound = await subcategory.findByPk(relation.subcategoryId) // {}
             catName = categoryFound.Nombre;
             subName = subcategoryFound.Nombre;
+            console.log(catName, subName, )
             notations[i] = {...allNotationByID[i].dataValues, catName, subName} 
         }
 
@@ -37,7 +38,7 @@ router.get('/', async (req, res) => {
 
         return res.status(200).json('Visit not found')
     } catch (error) {
-        console.log(error)
+        console.log('visit error')
     }
 })
 
@@ -106,7 +107,7 @@ router.post('/visitid', async (req, res)=> { //postear una visita y a la vez ret
         return res.status(201).json(createVisit)
 
     } catch (error) {
-        console.log(error)
+        console.log('visit2 error')
     }
 });
 
