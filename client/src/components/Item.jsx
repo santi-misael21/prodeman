@@ -21,6 +21,8 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 
 	function yes(){
 		if(catsVisit.closed) return
+		if(catsVisit.categories[go][subcategory].saved) return
+
 		if(notation && notation.notation === undefined){
 			catsVisit.categories[go][subcategory].notation= true
 			return dispatch(writeCategories(catsVisit.categories))
@@ -38,6 +40,8 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 	};
 	function no(){
 		if(catsVisit.closed) return
+		if(catsVisit.categories[go][subcategory].saved) return
+
 		if(notation && notation.notation === undefined){
 			catsVisit.categories[go][subcategory].notation= false
 			return dispatch(writeCategories(catsVisit.categories))
@@ -60,6 +64,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 	};
 
 	function save(){
+		if(catsVisit.closed) return
 		catsVisit.categories[go][subcategory].saved= true
 		let short = catsVisit.categories[go][subcategory]
 		let Image= short.hasOwnProperty('photo') ? short.photo : null
@@ -137,7 +142,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 			/>
 			<br></br>
 
-			{!admin.id && includePhoto &&
+			{includePhoto &&
 				<Camera notation={notation && notation} saved={notation && notation.saved} go={go} catName={category} subcategory={subcategory}/>}
 
 			{!admin.id && 

@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import '../estilos/begin.css';
+// import '../estilos/begin.css';
 // import '../estilos/item.css';
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux';
 import { getVisitID, loginAdmin, loginUser, logOut } from "../redux/actions";
 import { useEffect } from "react";
-import '../estilos/nav.css';
-import { TEAMS } from "./Data";
+// import '../estilos/nav.css';
+// import { TEAMS } from "./Data";
 
 export default function Begin(){
 
@@ -144,10 +144,10 @@ export default function Begin(){
                 </Link>
             </div>
             <div className="content">
-                <h3>{Object.keys(user) && user.username || Object.keys(admin) && admin.adminname}, bienvenido a la plataforma de relevamiento de los equipos informáticos.</h3>
+                <b><p>{Object.keys(user) && user.username || Object.keys(admin) && admin.adminname}, bienvenido a la plataforma de relevamiento de los equipos informáticos.</p></b>
                 <br></br>
                 {/* Seleccioná el equipo al cual pertenecés: */}
-                {Object.keys(admin).length > 0 && 'Eres administrador'}
+                <p><b>{Object.keys(admin).length > 0 && 'Eres administrador'}</b></p>
                 {Object.keys(user).length > 0 && 'Eres usuario'}
                 <br></br>
                 {Object.keys(user).length > 0 && `Tu equipo: ${Team}`}

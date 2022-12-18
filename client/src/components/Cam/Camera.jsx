@@ -16,6 +16,7 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
     let [loading, setLoading] = useState('')
     let [notationId, setNotationId] = useState(undefined)
 
+    let admin = useSelector(state=> state.admin)
     let visit = useSelector(state=> state.visit)
     console.log('visit linea 19 Camera.jsx', visit, go, subcategory, visit.categories[go][subcategory].saved)
     // if(Object.keys(visit).length) console.log(visit.categories[go][subcategory].saved)
@@ -148,7 +149,7 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
         <div className="camera">
             <Container>
             <h5 className='text-center'><b className={len? 'disabled' : 'title'}>Este ítem requiere una foto</b></h5>
-                {!visit.categories[go][subcategory].photo && <Dropzone className= 'dropzone' 
+                {!admin.id && !visit.categories[go][subcategory].photo && <Dropzone className= 'dropzone' 
                 onDrop={handleDrop}
                 onChange={(e)=>changeDrop(e)} value={visit.categories[go][subcategory].photo}>
                     {({getRootProps, getInputProps}) => (
@@ -161,25 +162,25 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
                 </Dropzone>}
                 {/* {imagePreview()} */}
                 <div>
-                    {
+                    { loading === 'true' ? 'Subiendo imagen' : 
                 !visit.categories[go][subcategory].photo ? "": <div><i className="noteofsaving"><h6>{len+plu}</h6><h6>{sav}</h6></i> 
                     {/* {visit.categories[go][subcategory].photo.map((item,i)=>  */}
-                        <div className="linkimage"
+                        <div className="linkimage" 
                         // key={i}
                         > 
                             {/* <img alt='Imagen' style={{width: '125px', height:'70px', backgroundSize: 'cover', paddingRight :'15px'}} src={item} /> */}
-                            <a 
+                            <a className="a"
                             // href={item} 
                             href={visit.categories[go][subcategory].photo}
                             target='_blank' 
                             rel="noopener noreferrer">
                                 <i>
-                                    <h5 style={{fontSize:'11.5px'}}>Ver en tamaño completo 
+                                    <h5 style={{fontSize:'11.5px', }}>Ver en tamaño completo 
                                         <img src={newtab3} width='12px' height='12px'/>
                                     </h5>
                                 </i>
-                            </a>
-                            <i ><button onClick={del} className='deleteimage' disabled={saved}><h5 style={{fontSize:'10px'}}>❌ Borrar</h5></button></i>
+                            </a>{ !admin.id &&
+                            <i ><button onClick={del} className='deleteimage' disabled={saved}><h5 style={{fontSize:'10px', paddingBottom:'4px'}}>❌ Borrar</h5></button></i>}
                             {/* Llenar Redux */}
 
                         </div>

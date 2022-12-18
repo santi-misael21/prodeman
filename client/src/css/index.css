@@ -116,19 +116,28 @@ button:disabled {
   border-radius: 10px;
   padding: 0 6px 3px 3px;
 }
+.deleteimage:disabled {
+  cursor: not-allowed;
+}
 .linkimage {
   display: flex;
   justify-content: space-between;
   background-color: #825f25;
   padding: 0 0 0 4px;
   border-radius: 10px;
+  width: 80%;
+  margin: auto;
 }
 .linkimage a {
   color: #631009;
 }
+.a:hover {
+  font-weight: bolder;
+  color: #b92125;
+}
 .noteofsaving {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .item,
 .itemdis {
@@ -160,6 +169,8 @@ button:disabled {
   border-radius: 5px;
   border-radius: 13px;
   padding: 4px 7.5px;
+  background-color: #080404;
+  color: blanchedalmond;
 }
 .item #cattag,
 .itemdis #cattag {
@@ -202,7 +213,16 @@ button:disabled {
   background-color: #100808;
 }
 .itemdis {
-  background-color: #404040;
+  background-color: rgba(48, 47, 47, 0.96);
+}
+.itemdis .comment {
+  width: 183px;
+  height: 100px;
+  border: 1px solid green;
+  border-radius: 13px;
+  padding: 4px 7.5px;
+  background-color: gray;
+  color: blanchedalmond;
 }
 .camera .section {
   border: 2px dashed gray;
@@ -261,9 +281,39 @@ h4 {
 }
 #navbegin {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 b {
   font-size: 11px;
+}
+.teamcolor {
+  color: purple;
+  font-weight: 700;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+}
+.datecolor {
+  color: yellowgreen;
+  font-weight: 700;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+}
+.idcolor {
+  color: orange;
+  font-weight: 700;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+}
+.closedcolor {
+  color: #631009;
+  font-weight: 700;
+  width: 200px;
+  margin: 0;
+  padding: 0;
 }
 .pagesbutton {
   width: 13%;
@@ -287,3 +337,33 @@ b {
   /* border: 2px solid red; */
   background-color: #631009;
 }
+h3 {
+  width: 300px;
+  margin: auto;
+}
+.beginbutton {
+  width: 191px;
+  border-radius: 12px;
+  padding: 4px;
+}
+.begin {
+  color: antiquewhite;
+}
+.content {
+  padding: 5px;
+  max-width: 240px;
+  min-width: 200px;
+  margin: auto;
+}
+/*Ajenos*/
+.errors,
+.noterr {
+  font-size: 9px;
+}
+.errors {
+  color: red;
+}
+.noterr {
+  color: green;
+}
+/*De <Up/>*/

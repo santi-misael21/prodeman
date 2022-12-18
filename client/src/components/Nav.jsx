@@ -7,14 +7,14 @@ export default function Nav({Team, Opening_date, Id, Closed, load, noparams}){
         <div className="nav">{ !noparams ?
             <div>
                 <b>Datos de la visita</b>
-                <br />
-                <label>Equipo: {load? 'Cargando...': Team }</label>
-                <br></br>
-                <label>Fecha de inicio: {load? 'Cargando...': new Date(Opening_date).toLocaleString().slice(0,-3)+' hs'}</label>
-                <br></br>
-                <label>Id: {load? 'Cargando...': Id}</label>
-                <br></br>
-                <label>Estado: {load? 'Cargando...': Closed? 'Cerrada':'Abierta'}</label>
+                {/* <br /> */}
+                <div className="teamcolor"><label>Equipo: {load? 'Cargando...': Team }</label></div>
+                {/* <br></br> */}
+                <div className="datecolor"><label>Fecha de inicio: {load? 'Cargando...': new Date(Opening_date).toLocaleString().slice(0,-3)+' hs'}</label></div>
+                {/* <br></br> */}
+                <div className="idcolor"><label>Id: {load? 'Cargando...': Id}</label></div>
+                {/* <br></br> */}
+                <div className="closedcolor"><label>Estado: {load? 'Cargando...': Closed? 'Cerrada':'Abierta'}</label></div>
             </div>:
             <div>
                 sin params

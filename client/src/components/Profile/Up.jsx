@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Teams from "../Teams/Teams";
 import { verifName, verifPass } from "./Errors";
-import '../../estilos/begin.css';
+// import '../../estilos/begin.css';
 import { useDispatch, useSelector } from "react-redux";
 import { loginAdmin, loginUser, postAdmin, postTeams, postUser } from "../../redux/actions";
 import { useEffect } from "react";
@@ -95,7 +95,7 @@ export default function Logup(){
     
     //Here team consologs twice
     function disab(){
-        return abled(tologup, tologin, errors)
+        return abled(tologup, tologin, errors, foradmin)
     }
 
     function submit(){ // user = {teamname, username, password,}

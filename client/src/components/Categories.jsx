@@ -132,15 +132,15 @@ export default function Categories(){
     }
     let style = {
         cursor: ready? 'pointer':'',
-        width: '100%'
+        width: '50%'
     }
 
     function saveAll(){
-        console.log('saveall')
+        console.log('saveall', user)
         let Closing_date = new Date();
         disp(closeVisit({
-            Id: visit.Id,
-            userId: user.Id, 
+            Id: visit.id,
+            userId: user.id, 
             Closing_date, 
             Closed:true
         }))
@@ -154,7 +154,7 @@ export default function Categories(){
             }
 
             <div style={{display: 'flex', color: "orange", justifyContent:'space-evenly'}}>
-                <Link to='/begin' style={style}> <button style={style}> <u>Volver</u> </button>
+                <Link to='/begin' style={style}> <button style={{width:'100%'}}> <u>Volver</u> </button>
                 </Link>{ user.id && 
                 <button style={style} onClick={saveAll} disabled={!ready || (!!visit.Closed)}><u>Concluir visita</u></button>}
             </div>
