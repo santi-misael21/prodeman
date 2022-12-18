@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux';
 import { getVisitID, loginAdmin, loginUser, logOut } from "../redux/actions";
 import { useEffect } from "react";
+import Nav2 from "./Nav/Nav2";
 // import '../estilos/nav.css';
 // import { TEAMS } from "./Data";
 
@@ -122,27 +123,13 @@ export default function Begin(){
         setConf(true)
     }
 
-    function close(){
-        localStorage.clear()
-        disp(logOut())
-    }
 
     // if(!admin.id && !user.id)
 
+
     return (
         <div className="begin">
-            <div className="nav" id='navbegin'>
-                <Link to='/list'>
-                    <button>
-                        Ver todas las visitas
-                    </button>
-                </Link>
-                <Link to='/'>
-                    <button onClick={close}>
-                        {'Cerrar sesión'}
-                    </button>
-                </Link>
-            </div>
+            <Nav2/>
             <div className="content">
                 <b><p>{Object.keys(user) && user.username || Object.keys(admin) && admin.adminname}, bienvenido a la plataforma de relevamiento de los equipos informáticos.</p></b>
                 <br></br>

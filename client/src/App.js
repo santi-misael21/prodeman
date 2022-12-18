@@ -5,6 +5,7 @@ import Begin from './components/Begin';
 import Categories from './components/Categories';
 import List from './components/List';
 import Logup from './components/Profile/Up';
+import Help from './components/Help/Help';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Route exact path='/check' render={()=> <Categories/>}  />
       <Route exact path='/list' render={()=> <List/>}  />
       <Route exact path='/begin' render={()=> <Begin/>}  />
+      <Route exact path='/help' render={()=> <Help/>}  />
       {/* <Route exact path='/check' render={()=> <Item category={'Casa Principal'} subcategory='Rack Principal (orden)'/>}  /> */}
     </Router>
   </div>

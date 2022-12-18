@@ -270,19 +270,110 @@ h4 {
   margin: auto;
 }
 .nav {
-  min-height: 60px;
+  min-height: fit-content;
   max-height: max-content;
   width: 100%;
   font-size: 10px;
   background-color: #a0752b;
   color: whitesmoke;
   text-align: left;
-  padding: 10px;
-}
-#navbegin {
-  text-align: center;
   display: flex;
   justify-content: center;
+  text-align: center;
+}
+.nav .divham #ham {
+  visibility: hidden;
+}
+.nav #nav1 {
+  width: 33%;
+  background-color: #631009;
+  border: 1px solid #825f25;
+  height: max-content;
+  padding: 6px 0;
+}
+.nav #nav2 {
+  width: 34%;
+  background-color: #631009;
+  border: 1px solid #825f25;
+  height: max-content;
+  padding: 6px 0;
+}
+.nav #nav3 {
+  width: 33%;
+  background-color: #631009;
+  border: 1px solid #825f25;
+  height: max-content;
+  padding: 6px 0;
+}
+.nav #nav1:hover,
+.nav #nav2:hover,
+.nav #nav3:hover {
+  background-color: #b92125;
+  cursor: pointer;
+}
+@media screen and (max-width: 414px) {
+  #responsive {
+    display: flex;
+    position: absolute;
+    background-color: rgba(160, 117, 43, 0.8);
+  }
+  #responsive #nav1,
+  #responsive #nav2,
+  #responsive #nav3 {
+    visibility: hidden;
+  }
+  #responsive .divham {
+    padding: 0.5px 0;
+  }
+  #responsive .divham #ham {
+    border-radius: 2px;
+    height: 2px;
+    width: 24px;
+    background-color: black;
+    margin: 5.2px 3px;
+    visibility: visible;
+  }
+  #responsive .divham:hover {
+    background-color: beige;
+    cursor: pointer;
+  }
+  #displ {
+    animation-name: hideOut;
+    animation-duration: 0.5s;
+    display: block;
+    position: absolute;
+    background-color: rgba(160, 117, 43, 0.8);
+  }
+  #displ #nav1,
+  #displ #nav2,
+  #displ #nav3 {
+    cursor: pointer;
+    background-color: rgba(99, 16, 9, 0.8);
+    width: 80%;
+    text-align: left;
+    padding-left: 2%;
+  }
+  #displ #nav1:hover,
+  #displ #nav2:hover,
+  #displ #nav3:hover {
+    background-color: #b92125;
+    cursor: pointer;
+  }
+  #displ .divham {
+    padding: 0.5px 0;
+  }
+  #displ .divham #ham {
+    border-radius: 2px;
+    height: 2px;
+    width: 24px;
+    background-color: black;
+    margin: 5.2px 3px;
+    visibility: visible;
+  }
+  #displ .divham:hover {
+    background-color: beige;
+    cursor: pointer;
+  }
 }
 b {
   font-size: 11px;
@@ -314,6 +405,16 @@ b {
   width: 200px;
   margin: 0;
   padding: 0;
+}
+@keyframes hideOut {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 .pagesbutton {
   width: 13%;

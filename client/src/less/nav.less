@@ -1,5 +1,5 @@
 .nav{
-    min-height: 60px;
+    min-height: fit-content;
     max-height: max-content;
     width: 100%;
     font-size: 10px;
@@ -7,13 +7,113 @@
     background-color: @lightpeanut;
     color: whitesmoke;
     text-align: left;
-    padding: 10px;
-}
-
-#navbegin{
-    text-align: center;
     display: flex;
     justify-content: center;
+    text-align: center;
+    // padding: 10px;
+        .divham{
+            #ham{
+                visibility:hidden;
+            }
+        }
+    #nav1{
+        width: 33%;
+        background-color: @darkbordeau;
+        border: 1px solid @darkpeanut;
+        height: max-content;
+        padding: 6px 0;
+    }
+    #nav2{
+        width: 34%;
+        background-color: @darkbordeau;
+        border: 1px solid @darkpeanut;
+        height: max-content;
+        padding: 6px 0;
+    }
+    #nav3{
+        width: 33%;
+        background-color: @darkbordeau;
+        border: 1px solid @darkpeanut;
+        height: max-content;
+        padding: 6px 0;
+    }
+    // #nav4, #nav5{
+        
+    // }
+    #nav1:hover, #nav2:hover, #nav3:hover{
+        background-color: @lightbordeau;
+        cursor: pointer;
+    }
+}
+    @media screen and (max-width: 414px) {
+        // #nav1:hover, #nav2:hover, #nav3:hover{
+        //     background-color: @lightbordeau;
+        //     cursor: pointer;
+        // }.enter{
+    // .nav{
+    //     #nav1, #nav2, #nav3{
+    //         visibility: hidden;
+    //     }
+    // }
+    #responsive{
+        // }
+        display: flex;
+        position: absolute;
+        background-color: rgba(160, 117, 43, 0.8);
+        #nav1, #nav2, #nav3{
+            visibility: hidden;
+        }
+        .divham{
+            padding: 0.5px 0;
+            #ham{
+                // border: 1px solid blue;
+                border-radius: 2px;
+                height: 2px;
+                width: 24px;
+                background-color: black;
+                margin: 5.2px 3px;
+                visibility:visible;
+            }
+        }
+        .divham:hover{
+            background-color: beige;
+            cursor: pointer;
+        }
+    }
+    #displ{
+        animation-name: hideOut;
+        animation-duration: 0.5s;
+        display: block;
+        position: absolute;
+        background-color: rgba(160, 117, 43, 0.8);
+        #nav1, #nav2, #nav3{
+            cursor: pointer;
+            background-color: rgba(99, 16, 9, 0.8);
+            width: 80%;
+            text-align: left;
+            padding-left: 2%;
+        }
+        #nav1:hover, #nav2:hover, #nav3:hover{
+            background-color: @lightbordeau;
+            cursor: pointer;
+        }
+        .divham{
+            padding: 0.5px 0;
+            #ham{
+                // border: 1px solid blue;
+                border-radius: 2px;
+                height: 2px;
+                width: 24px;
+                background-color: black;
+                margin: 5.2px 3px;
+                visibility:visible;
+            }
+        }
+        .divham:hover{
+            background-color: beige;
+            cursor: pointer;
+        }
+    }
 }
 
 b{
@@ -55,3 +155,15 @@ b{
     margin: 0;
     padding: 0;
 }
+
+@keyframes hideOut {
+    from {
+      opacity: 0;
+      transform: translateY(-200px);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }

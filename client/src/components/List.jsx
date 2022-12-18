@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllVisits, getVisitsByuserId } from "../redux/actions";
+import Nav2 from "./Nav/Nav2";
 import Visits from "./Visits/Visits";
 
 export default function List(){
@@ -27,11 +28,12 @@ export default function List(){
 
     return (
         <div>
-            <Link to='/'>
+            {/* <Link to='/'>
                 <button>
                     Volver al inicio
                 </button>
-            </Link>
+            </Link> */}
+            <Nav2/>
             {visitsList.length ? 
             <div className="visits">
                 {visitsList.map((v,i)=><Visits Id={v.Id} Opening_date={v.Opening_date} Closed={v.Closed} Closing_date={v.Closing_date} Team={v.Team} key={i}/>
