@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logOut } from "../../redux/actions";
 
-export default function Nav2(){
+export default function Nav2({confirm, helpDis, vissDis, profDis, initDis}){
     
     let [displ, setDispl] = useState(false)
 
@@ -12,26 +12,30 @@ export default function Nav2(){
 
     const disp = useDispatch()
     const hist = useHistory()
+    
+    let user = useSelector(state=> state.user); 
+    let admin = useSelector(state=> state.admin); 
 
     function help(){
         hist.push('/help')
     }
 
     function list(){
-        hist.push('/list')
+        hist.push('/begin')
     }
 
-    function init(){
+    // function init(){
 
-    }
+    // }
 
     function prof(){
-
+        hist.push('/profile')
     }
 
     function close(){
         localStorage.clear()
         disp(logOut())
+        hist.push('/')
     }
 
     function display(){
@@ -45,27 +49,22 @@ export default function Nav2(){
                     <div id="ham"/>
                     <div id="ham"/>
                 </div>
-            
-                <div onClick={help} id="nav1">
+                <div onClick={!helpDis ? help : undefined} id={helpDis? 'divdis':"nav1"}>
                     {'Ayuda'}
                 </div>
-            {/* <Link to='/list'> */}
-                <div  onClick={list} id="nav2">
+                <div  onClick={!vissDis? list : undefined} id={vissDis? 'divdis':"nav2"}>
                     {'Visitas'}
                 </div>
-            {/* </Link>
-            <Link to='/' > */}
             
-                {/* <div onClick={init} id="nav4">
+                <div onClick={(user && user.id )|| !initDis? confirm : undefined} id={(admin && admin.id) || initDis? 'divdis':"nav4"}>
                     {'Iniciar visita'}
                 </div>
-                <div onClick={prof} id="nav5">
+                <div onClick={!profDis ? prof : undefined} id={profDis? 'divdis':"nav5"}>
                     {'Mi perfil'}
-                </div> */}
+                </div>
                 <div onClick={close} id="nav3">
                     {'Cerrar sesión'}
                 </div>
-            {/* </Link>  */}
             {/* 🔽 */}
         </div>
     )

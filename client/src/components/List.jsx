@@ -6,12 +6,12 @@ import { getAllVisits, getVisitsByuserId } from "../redux/actions";
 import Nav2 from "./Nav/Nav2";
 import Visits from "./Visits/Visits";
 
-export default function List(){
+export default function List({user, admin}){
 
     let dispatch = useDispatch()
     let visitsList = useSelector(state=> state.visitsList)
-    let user = useSelector(state=> state.user)
-    let admin = useSelector(state=> state.admin)
+    // let user = useSelector(state=> state.user)
+    // let admin = useSelector(state=> state.admin)
 
     console.log('Maradona siempre Maradona: ', user)
 
@@ -22,7 +22,7 @@ export default function List(){
         if(admin.hasOwnProperty('id')){
             dispatch(getAllVisits())
         }
-    },[])
+    },[user, admin])
 
     if(visitsList.length) console.log(visitsList)
 
@@ -33,7 +33,7 @@ export default function List(){
                     Volver al inicio
                 </button>
             </Link> */}
-            <Nav2/>
+            {/* <Nav2/> */}
             {visitsList.length ? 
             <div className="visits">
                 {visitsList.map((v,i)=><Visits Id={v.Id} Opening_date={v.Opening_date} Closed={v.Closed} Closing_date={v.Closing_date} Team={v.Team} key={i}/>

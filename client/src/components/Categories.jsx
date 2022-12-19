@@ -8,7 +8,8 @@ import Pages from "./Pages";
 import '../estilos/categ.css';
 import { useState } from "react";
 import { DefinePages, Detection } from "./Item/Item";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import Nav2 from "./Nav/Nav2";
 
 
 export default function Categories(){
@@ -24,6 +25,7 @@ export default function Categories(){
  
     // Redux:
     const disp = useDispatch();
+    const hist = useHistory();
 
     let categories = useSelector(state=>state.categories)
     let subcategories = useSelector(state=>state.subcategories)
@@ -67,6 +69,9 @@ export default function Categories(){
     porque estamos hablando de que no tiene que realizarse el proceso de armado de data hasta que no exista una visit, y eso ya estaría pasando. Yo diría dejarlo así por ahora. 
         Creo que el doble componente en la parte del return, se soluciona condicionado el contenido del useEffect de arriba a si existe visit.id, probar no más. Desarrollar por qué ->
     */
+    if(Object.keys(visit).length && !visit.id){
+        hist.push('/begin')
+    }
 
     // console.log('visit.team', visit.team)
 
@@ -132,7 +137,11 @@ export default function Categories(){
     }
     let style = {
         cursor: ready? 'pointer':'',
-        width: '50%'
+        width: '100%',
+        height: 'min-content',
+        fontSize: '10px',
+        padding: '6px 0',
+        margin: 'auto',
     }
 
     function saveAll(){
@@ -148,16 +157,23 @@ export default function Categories(){
 
     return (
         <div>
+            <Nav2 initDis/>
             { visit && Object.keys(visit).length && visit.id?
             <Nav Id={visit.id} Opening_date={visit.date} Closed={visit.closed} Team={visit.team} />:
             <Nav load={true}/>
             }
 
-            <div style={{display: 'flex', color: "orange", justifyContent:'space-evenly'}}>
+            {/* <div style={{display: 'flex', color: "orange", justifyContent:'space-evenly'}}>
                 <Link to='/begin' style={style}> <button style={{width:'100%'}}> <u>Volver</u> </button>
                 </Link>{ user.id && 
                 <button style={style} onClick={saveAll} disabled={!ready || (!!visit.Closed)}><u>Concluir visita</u></button>}
-            </div>
+            </div> */}
+            { user.id && 
+            <div className="endvisit">
+                <button style={style} onClick={saveAll} disabled={!ready || (!!visit.Closed)}>
+                    <u>Concluir visita</u>
+                </button>
+            </div>}
 
             {completed.length > 0 && 
                 <Pages completed={completed} />

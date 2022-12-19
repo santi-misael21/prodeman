@@ -1,6 +1,6 @@
 .nav{
     min-height: fit-content;
-    max-height: max-content;
+    max-height: min-content;
     width: 100%;
     font-size: 10px;
     // background-color: rgb(128, 83, 0);
@@ -17,30 +17,39 @@
             }
         }
     #nav1{
-        width: 33%;
+        width: 25%;
         background-color: @darkbordeau;
         border: 1px solid @darkpeanut;
         height: max-content;
         padding: 6px 0;
     }
     #nav2{
-        width: 34%;
+        width: 25%;
         background-color: @darkbordeau;
         border: 1px solid @darkpeanut;
         height: max-content;
         padding: 6px 0;
     }
-    #nav3{
-        width: 33%;
+    #nav3, #nav4, #nav5{
+        width: 25%;
         background-color: @darkbordeau;
         border: 1px solid @darkpeanut;
         height: max-content;
         padding: 6px 0;
+    }
+    #divdis{
+        background-color: rgb(68, 68, 68);
+        width: 25%;
+        padding: 6px 0;
+        height: max-content;
+        border: 1px solid rgb(191, 191, 191);
+        color: rgb(191, 191, 191);
+        cursor:not-allowed;
     }
     // #nav4, #nav5{
         
     // }
-    #nav1:hover, #nav2:hover, #nav3:hover{
+    #nav1:hover, #nav2:hover, #nav3:hover, #nav4:hover, #nav5:hover{
         background-color: @lightbordeau;
         cursor: pointer;
     }
@@ -58,10 +67,20 @@
     #responsive{
         // }
         display: flex;
-        position: absolute;
+        // position: absolute;
         background-color: rgba(160, 117, 43, 0.8);
-        #nav1, #nav2, #nav3{
+        #nav1, #nav2, #nav3, #nav4, #nav5{
             visibility: hidden;
+        }
+        #divdis{
+            visibility: hidden;
+            // background-color: rgb(68, 68, 68);
+            // width: 100%;
+            // padding: 6px 0;
+            // height: max-content;
+            // border: 1px solid rgb(191, 191, 191);
+            // color: rgb(191, 191, 191);
+            // cursor:not-allowed;
         }
         .divham{
             padding: 0.5px 0;
@@ -84,21 +103,33 @@
         animation-name: hideOut;
         animation-duration: 0.5s;
         display: block;
-        position: absolute;
+        // position: absolute;
         background-color: rgba(160, 117, 43, 0.8);
-        #nav1, #nav2, #nav3{
+        #nav1, #nav2, #nav3, #nav4, #nav5{
             cursor: pointer;
             background-color: rgba(99, 16, 9, 0.8);
-            width: 80%;
+            width: 97%;
             text-align: left;
             padding-left: 2%;
         }
-        #nav1:hover, #nav2:hover, #nav3:hover{
+        #divdis{
+            background-color: rgb(68, 68, 68);
+            width: 97%;
+            padding: 6px 0;
+            height: max-content;
+            border: 1px solid rgb(191, 191, 191);
+            color: rgb(191, 191, 191);
+            cursor:not-allowed;
+            text-align: left;
+            padding-left: 2%;
+        }
+        #nav1:hover, #nav2:hover, #nav3:hover, #nav4:hover, #nav5:hover{
             background-color: @lightbordeau;
             cursor: pointer;
         }
         .divham{
             padding: 0.5px 0;
+            max-width: 30px;
             #ham{
                 // border: 1px solid blue;
                 border-radius: 2px;
@@ -114,6 +145,17 @@
             cursor: pointer;
         }
     }
+}
+
+.nav1{
+    min-height: fit-content;
+    max-height: max-content;
+    padding: 2px 5px ;
+    font-size: 10px;
+    // background-color: rgb(128, 83, 0);
+    background-color: @lightpeanut;
+    color: whitesmoke;
+    text-align: left;
 }
 
 b{

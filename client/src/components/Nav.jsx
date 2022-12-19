@@ -4,7 +4,7 @@ import React from "react";
 export default function Nav({Team, Opening_date, Id, Closed, load, noparams}){
 
     return (
-        <div className="nav">{ !noparams ?
+        <div className={!noparams ? "nav1" : ""}>{ !noparams ?
             <div>
                 <b>Datos de la visita</b>
                 {/* <br /> */}
@@ -15,10 +15,7 @@ export default function Nav({Team, Opening_date, Id, Closed, load, noparams}){
                 <div className="idcolor"><label>Id: {load? 'Cargando...': Id}</label></div>
                 {/* <br></br> */}
                 <div className="closedcolor"><label>Estado: {load? 'Cargando...': Closed? 'Cerrada':'Abierta'}</label></div>
-            </div>:
-            <div>
-                sin params
-            </div>
+            </div>: false
             }
         </div>
     )

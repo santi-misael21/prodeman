@@ -7,6 +7,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { getVisitID, loginAdmin, loginUser, logOut } from "../redux/actions";
 import { useEffect } from "react";
 import Nav2 from "./Nav/Nav2";
+import List from "./List";
 // import '../estilos/nav.css';
 // import { TEAMS } from "./Data";
 
@@ -129,23 +130,8 @@ export default function Begin(){
 
     return (
         <div className="begin">
-            <Nav2/>
-            <div className="content">
-                <b><p>{Object.keys(user) && user.username || Object.keys(admin) && admin.adminname}, bienvenido a la plataforma de relevamiento de los equipos informáticos.</p></b>
-                <br></br>
-                {/* Seleccioná el equipo al cual pertenecés: */}
-                <p><b>{Object.keys(admin).length > 0 && 'Eres administrador'}</b></p>
-                {Object.keys(user).length > 0 && 'Eres usuario'}
-                <br></br>
-                {Object.keys(user).length > 0 && `Tu equipo: ${Team}`}
-                <br></br>
-                <br></br>
-                {/* <div className="check1" onClick={()=>t1()} id={team1 ? 'selected': ''}>Microinformática<input type='checkbox' checked={team1} onChange={()=>t1()}/></div>
-                <br></br>
-                <div className="check2" onClick={()=>t2()} id={team2 ? 'selected': ''}>Telecomunicaciones<input type='checkbox' checked={team2} onChange={()=>t2()}/></div>
-                <br></br> */}{Object.keys(user).length > 0 &&
-                <button className="beginbutton" onClick={confirm} > Iniciar una visita </button>}
-            </div>
+            <Nav2 confirm={confirm} vissDis/>
+            <List user={user} admin={admin}/>
         </div>
     )
 
