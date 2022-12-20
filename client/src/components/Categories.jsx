@@ -40,7 +40,7 @@ export default function Categories(){
 
     // La function que dice si en la visit hay notations o no: hasta que no tenga result <Item/> no aparece
     if(rslt===null)setRslt(Detection(visit, catsRequired))
-    // console.log('rslt', rslt)
+    console.log('visit', visit)
     // console.log('pages para ver si cambia y puedo anclar un useEffect, ideas grandes que salían desde los primero días', go)
 
     // Esta es la magistralidad que servirá para el perfil de Admin, acá no me deja guardar los valores:
@@ -158,7 +158,7 @@ export default function Categories(){
             </div> */}
             { user.id && 
             <div className="endvisit">
-                <button style={style} onClick={saveAll} disabled={!ready || (!!visit.Closed)}>
+                <button style={style} onClick={saveAll} disabled={!ready || (visit.closed)}>
                     <u>Concluir visita</u>
                 </button>
             </div>}
@@ -180,7 +180,7 @@ export default function Categories(){
                     visit={[visit]}
                 />)}
             </div>}
-            { !rslt && visit && visit.categories.length && 
+            { !rslt && visit && visit.categories.length > 0 && 
                 <div className="cards">
                 {catsRequired && keysArranged.slice(1,keysArranged.length).map((k,i)=><Item 
                     category={catsRequired[go].name} 
