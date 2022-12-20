@@ -6,7 +6,7 @@ import { setPage } from "../redux/actions";
 
 export default function Pages({completed}){
 
-    console.log(completed)
+    // console.log(completed)
     //Local:
     // let [go, setGo] = useState(0)
 

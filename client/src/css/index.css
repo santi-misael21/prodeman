@@ -493,6 +493,7 @@ h3 {
   width: 191px;
   border-radius: 12px;
   padding: 4px;
+  border: 3px solid gray;
 }
 .begin {
   color: antiquewhite;
@@ -512,15 +513,37 @@ h3 {
   color: red;
 }
 .noterr {
-  color: green;
+  color: #ff2600;
+}
+.border {
+  border: 3px solid green;
 }
 /*De <Up/>*/
+.localvinc {
+  font-weight: 400;
+  display: block;
+  font-size: 14px;
+  padding: 0 25px;
+}
+.first {
+  padding-left: 50px;
+}
+.second {
+  padding-left: 75px;
+}
+.index {
+  color: orange;
+}
+p.localvinc {
+  margin: 0;
+  font-size: 12px;
+}
 .help,
 .welcome,
 .indexguide,
 .guide {
   text-align: 'left';
-  padding: 10px;
+  padding: 15px 10px;
   margin: 10px;
   border-radius: 15px;
 }
@@ -529,29 +552,37 @@ h3 {
 .indexguide .welcome,
 .guide .welcome {
   border: 1px solid yellow;
-  background-color: #141400;
+  background-color: #0f0f00;
   color: yellow;
+  font-size: 13px;
 }
 .help .indexguide,
 .welcome .indexguide,
 .indexguide .indexguide,
 .guide .indexguide {
   border: 1px solid orange;
-  background-color: #281400;
+  background-color: #1e0f00;
   color: orange;
   text-align: start;
+}
+.help .indexguide a,
+.welcome .indexguide a,
+.indexguide .indexguide a,
+.guide .indexguide a {
+  font-size: 12px;
 }
 .help .guide,
 .welcome .guide,
 .indexguide .guide,
 .guide .guide {
   border: 1px solid yellowgreen;
-  background-color: #142800;
+  background-color: #0f1e00;
   color: yellowgreen;
   text-align: start;
+  font-size: 12px;
 }
 .help {
   border: 1px solid purple;
-  background-color: #140014;
+  background-color: #0f000f;
   color: beige;
 }

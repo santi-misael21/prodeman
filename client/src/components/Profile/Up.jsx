@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginAdmin, loginUser, postAdmin, postTeams, postUser } from "../../redux/actions";
 import { useEffect } from "react";
 import Nav from "../Nav";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { abled } from "./Disabled";
 import { TEAMS } from "../Data";
 
@@ -41,6 +41,8 @@ export default function Logup(){
     // Redux: 
     const hist = useHistory()
     const dispatch = useDispatch()
+    let theuser= useSelector(state=> state.user)
+    // console.log(theuser)
 
     useEffect(()=>{
         let role = foruser? 'usuario': foradmin? 'administrador' : ''
@@ -53,7 +55,7 @@ export default function Logup(){
     },[]);
 
     useEffect(()=>{
-        console.log(team)
+        // console.log(team)
         let completeTeamname = team === 't' ? 'Telecomunicaciones' : team === 'm' ? "Microinformática" : ""
         setInput({...input, teamname: completeTeamname})
         if(team){
@@ -64,7 +66,7 @@ export default function Logup(){
 
     let user = useSelector(state=> state.user)
     let admin = useSelector(state=> state.admin)
-    console.log('user: ', user, 'admin: ', admin)
+    // console.log('user: ', user, 'admin: ', admin)
 
     if(Object.keys(user).length && user.id && !thereisuser) {
         setThereisuser(true)
@@ -85,6 +87,7 @@ export default function Logup(){
     function change(v){
         let val= v.target.value;
         let nam= v.target.name
+        theuser =''
         setInput({
             ...input,
             [nam]: val
@@ -99,7 +102,7 @@ export default function Logup(){
     }
 
     function submit(){ // user = {teamname, username, password,}
-        let toDispatchPost, toDispatchLog, nam
+        let toDispatchPost, toDispatchLog
         if(foruser) {
             toDispatchPost = postUser
             toDispatchLog = loginUser
@@ -136,8 +139,8 @@ export default function Logup(){
         setAdmin(!foradmin)
     }
 
-    let color1= foruser? '' : 'yellow';
-    let color2= foruser? 'yellow' : '';
+    // let color1= foruser? '' : 'yellow';
+    // let color2= foruser? 'yellow' : '';
 
     return (
         <div>
@@ -154,7 +157,6 @@ export default function Logup(){
 
                     
                     <div className="changerol">
-                        {/* <button className="buttonrol" onClick={changeRol}>Soy {actualrole[1]}</button> */}
                         {/* <div  > */}
                             <p className="t">Elegí tu función</p>
                             {/* </div> */}
@@ -166,37 +168,37 @@ export default function Logup(){
                         </div>
                     </div>
 
-                    <div className="changerol">
+                    <div className="changerol">{!actualrole[0]? <br />: 
                         <p className="headerright">
                             {tologup? 'Registrate ' /*para poder realizar relevamientos*/ : 'Ingresá '}{'como ' + actualrole[0]}
-                        </p>
+                        </p>}
 
                         <div>Nombre</div>
                         <input  
-                            className="beginbutton" 
+                            className={errors.n? "beginbutton" : 'border beginbutton'}
                             placeholder='Nombre' 
                             name="username" 
                             value={input.username} 
                             onChange={(e)=>change(e)}
                         />
                         <div className={errors.n ? "errors" : "noterr"} >
-                            {errors.n? errors.n : 'ok'}
+                            {errors.n? errors.n : theuser === 'Usuario no encontrado' && theuser || <br/> } 
                         </div>
 
                         <div>Contraseña</div>
                         <input  
-                            className="beginbutton" placeholder='Contraseña' 
+                            className={errors.p? "beginbutton" : 'border beginbutton'}placeholder='Contraseña' 
                             type='password' name="password" 
                             value={input.password} onChange={(e)=>change(e)}
                         />
                         <div className={errors.p ? "errors" : "noterr"} >
-                            {errors.p? errors.p : 'ok'}
+                            {errors.p? errors.p : theuser === 'Contraseña incorrecta' && theuser || <br/> } 
                         </div>
 
                         { tologup && foruser &&
                         <div>
                             <Teams setTeam={setTeam} team={team}/>
-                            <div className={errors.t ? "errors" : "noterr"} >{errors.t? teamtext : 'ok'} </div>
+                            <div className={errors.t ? "errors" : "noterr"} >{errors.t? teamtext : <br/>} </div>
                             <br></br>
                         </div> }
 

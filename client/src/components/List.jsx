@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { getAllVisits, getVisitsByuserId } from "../redux/actions";
-import Nav2 from "./Nav/Nav2";
+// import Nav2 from "./Nav/Nav2";
 import Visits from "./Visits/Visits";
 
 export default function List({user, admin}){
@@ -13,7 +13,7 @@ export default function List({user, admin}){
     // let user = useSelector(state=> state.user)
     // let admin = useSelector(state=> state.admin)
 
-    console.log('Maradona siempre Maradona: ', user)
+    // console.log( user)
 
     useEffect(()=>{
         if(user.hasOwnProperty('id')){
@@ -24,7 +24,7 @@ export default function List({user, admin}){
         }
     },[user, admin])
 
-    if(visitsList.length) console.log(visitsList)
+    // if(visitsList.length) console.log(visitsList)
 
     return (
         <div>

@@ -7,7 +7,7 @@ const { getCatSubcat } = require('../utils/getCatSubcat.js');
 const { getImages } = require('../utils/getImagesByData.js');
 
 
-router.get('/all', async(req,res)=>{ // la ruta más inservible de todos los tiempos
+router.get('/all', async(req,res)=>{ // 
     try {
         let allImages = await image.findAll()
         if(allImages) return res.status(200).json(allImages);
@@ -41,7 +41,7 @@ router.post('/define', async(req,res)=>{
 
     let {url , notationId} = req.body
 
-    console.log(req.body)
+    // console.log(req.body)
 
     if( !url || !notationId ) return res.status(200).json('Faltan params')
 

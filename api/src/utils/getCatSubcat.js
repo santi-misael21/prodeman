@@ -7,7 +7,7 @@ const axios = require('axios').default;
 const getCatSubcat = async (req, res) => {
     
     let {catName, subName} = req.body
-    console.log(req.body)
+    // console.log(req.body)
 
     try {
         

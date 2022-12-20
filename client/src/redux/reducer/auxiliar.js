@@ -38,11 +38,11 @@ export function putCategories(notations){ // [...allNotations]
 
 };
 
-function putImages () { // la imagen devuelve su: id, url, notationId,
-                        // tenés que instertar esa url en visit.categories[i][sub].
-                        //
+// function putImages () { // la imagen devuelve su: id, url, notationId,
+//                         // tenés que instertar esa url en visit.categories[i][sub].
+//                         //
 
-}
+// }
 
 /* PARAMETER
     "notations": [

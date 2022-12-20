@@ -1,16 +1,16 @@
 require('dotenv').config();
 const express = require("express");
 const router = express.Router();
-const { Op, } = require("../db");
+// const { Op, } = require("../db");
 
 const { category, subcategory, notation, visit, notation_visit, cat_subcat } = require('../db.js');
 
-const axios = require('axios').default;
+// const axios = require('axios').default;
 
 router.post('/define', async (req, res)=>{
 
     let {objectsInArray} = req.body
-    console.log('objectsInArray', objectsInArray)
+    // console.log('objectsInArray', objectsInArray)
     let relations = await cat_subcat.findAll()
     if(relations.length) return res.status(200).json(relations)
 
@@ -29,7 +29,7 @@ router.post('/define', async (req, res)=>{
             
             for(let i= 0; i< objectsInArray.length; i++){
                 let Nombre= objectsInArray[i].name
-                console.log('loop linea 32 cat_subcat', Nombre)
+                // console.log('loop linea 32 cat_subcat', Nombre)
                 let catAsked= await category.findOne({
                     where: {
                         Nombre,
@@ -40,7 +40,7 @@ router.post('/define', async (req, res)=>{
                 for (let loop in objectsInArray[i]){
                     if(loop!=='name'){
 
-                        console.log('loop linea 32 cat_subcat', loop)
+                        // console.log('loop linea 32 cat_subcat', loop)
                         let subAsked= await subcategory.findOne({
                             where: {
                                 Nombre: loop

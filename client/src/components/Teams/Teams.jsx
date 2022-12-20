@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import '../../estilos/nav.css';
 
 export default function Teams({setTeam, team}){
 
@@ -38,21 +37,12 @@ export default function Teams({setTeam, team}){
         }
     };
 
-    // function confirm(){
-    //     let Team= team1 || team2;
-    //     setTeam(Team)
-    // };
-
     return (
         <div>
-            Seleccioná el equipo al cual pertenecés:
-            <br></br>
-            <br></br>
+            <p className="headerright">Seleccioná el equipo al cual pertenecés:</p>
             <div className="check1" onClick={()=>t1()} id={team1 || team==='m' ? 'selected': ''}>Microinformática<input type='checkbox' checked={team1 || team==='m' || false} onChange={()=>t1()}/></div>
             <br></br>
             <div className="check2" onClick={()=>t2()} id={team2 || team==='t'? 'selected': ''}>Telecomunicaciones<input type='checkbox' checked={team2 || team==='t' || false} onChange={()=>t2()}/></div>
-            <br></br>
-            {/* <button className="beginbutton" onClick={confirm} > Confirmar y comenzar </button> */}
         </div>
     )
 }

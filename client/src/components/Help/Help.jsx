@@ -20,43 +20,93 @@ export default function Help(){
 
                 
                 <div >
-                    <h4 className="welcome"> Bienvenido a la plataforma de relevamiento de los equipos informáticos pertenecientes a la empresa. 
-                    <br /> A continuación se detalla una guía abarcativa para comprender el funcionamiento del sitio y obtener una buena experiencia de uso.</h4>
+                    <p className="welcome"> Bienvenido a la plataforma de relevamiento de los equipos informáticos pertenecientes a la empresa. 
+                    <br /> A continuación se detalla una guía abarcativa para comprender el funcionamiento del sitio y obtener una buena experiencia de uso.</p>
                     <div className="indexguide">
-                        Origen: <a href="#apartado3">Ir al apartado 3</a>
+                        {/* Índice: */}
 
-                        <h4>Índice: </h4>
-
-                        <h4>1. Introducción.</h4>
-                        <h5>1.1. Datos.</h5>
-                        <h6>1.1.1. Notación.</h6>
-                        <h6>1.1.2. Observación.</h6>
-                        <h6>1.1.3. Imagen.</h6>
+                        <a href="#intro" className="index localvinc">1. Introducción.</a>
+                            <a href="#datos" className="index localvinc first">1.1. Datos.</a>
+                                <a href="#notat" className="index localvinc second">1.1.1. Notación.</a>
+                                <a href="#obser" className="index localvinc second">1.1.2. Observación.</a>
+                                <a href="#image" className="index localvinc second">1.1.3. Imagen.</a>
                         
-                        <h4>2. Roles.</h4>
-                        <h5>2.1. Usuario.</h5>
-                        <h5>2.2. Administrador.</h5>
+                        
+                        <a href="#roles" className="index localvinc">2. Roles.</a>
+                            <a href="#users" className="index localvinc first">2.1. Usuario.</a>
+                                <a href="#facul" className="index localvinc second">2.1.1. Facultad.</a>
+                                <a href="#acces" className="index localvinc second">2.1.2. Acceso.</a>
+                                <a href="#teams" className="index localvinc second">2.1.3. Equipos.</a>
+                            <a href="#admin" className="index localvinc first">2.2. Administrador.</a>
+                                <a href="#facul2" className="index localvinc second">2.2.1. Facultad.</a>
+                                <a href="#acces2" className="index localvinc second">2.2.2. Acceso.</a>
 
-                        <h4>3. Relevamientos.</h4>
+                        <a href="#relev" className="index localvinc">3. Relevamientos.</a>
                     </div>
                 </div>
 
                 <div className="guide">
-                    1. Introducción.
-                        El propósito de la aplicación es servir como herramienta para recopilar la totalidad de datos de cada relevamiento realizado a nivel general de los equipos. Cada relevamiento conlleva abarcar ocho (8) categorías o sectores de la empresa. Donde cada categorías se compone de varias subcategorías o elementos a ser relevados o revisados individualmente. Cada subcategoría o elemento requiere de almacenar ciertos parámetros o datos. En el apartado 1.1. Datos. se detallan estos datos.
-
-                    1.1. Datos. 
-                        Cada elemento individual relevado se compone de: 
-                    1.1.1. Notación. Una respuesta binaria de "sí" o "no".
-                    1.1.2. Observación. Un espacio para escribir un comentario donde se detallen las observaciones.
-                    1.1.3. Imagen. Un espacio para subir una fotografía sobre el ítem en cuestión (este parámetro no es requerido siempre).
-
-                    2. Roles.
-                        Al momento de ingresar a la plataforma se debe elegir entre uno de dos roles: usuario o administrador.
-                    2.1. Usuario. Al momento de registrarse debe indicar a qué equipo pertenece: Telecomunicaciones o Microinformática. Puede efectuar y editar relevamientos: subir notaciones, observaciones e imágenes, a diferencia de un Administrador, quien no puede hacerlo. Tiene acceso solo a sus propios relevamientos que él mismo como Usuario inició. Una vez finalizado un relevamiento, solo puede visualizarlo, pero ya no puede volver a editarlo.
-                    2.1. Administrador. Puede monitorear todos los relevamientos abiertos por cualquier Usuario. No puede abrir relevamientos ni editarlos, ya sea que estén abiertos o finalizados. 
+                    <a name="intro" className="localvinc"><b>1. Introducción.</b></a>
+                    <p className="localvinc">Esta aplicación sirve como herramienta para recopilar la totalidad de datos de cada relevamiento de los equipos informáticos de la empresa. </p>
+                    <p className="localvinc">
+                    Realizar un relevamiento conlleva abarcar ocho categorías o sectores de la empresa. Donde cada categoría se compone de varias subcategorías o elementos a ser relevados o revisados individualmente. </p>
                     
-                    Destino: <a name="apartado3">Apartado 3</a>
+                    <a name="datos" className="localvinc first"><b>1.1. Datos. </b></a>
+                    <p className="localvinc first">Cada subcategoría a relevar requiere ser completada con los siguientes datos: </p>
+
+                    <a name="notat" className="localvinc second"><b>1.1.1. Notación. </b></a>
+                    <p className="localvinc second">Una respuesta binaria de <i>Sí</i> o <i>No</i>.</p>
+
+                    <a name="obser" className="localvinc second"><b>1.1.2. Observación. </b></a>
+                    <p className="localvinc second">Un espacio para escribir un comentario donde se detallen las observaciones.</p>
+
+                    <a name="image" className="localvinc second"><b>1.1.3. Imagen. </b></a>
+                    <p className="localvinc second">Un espacio para subir una fotografía sobre el ítem en cuestión (este parámetro no siempre es requerido).</p>
+                    
+                    <br /> <br />
+
+                    <a name="roles" className="localvinc"><b>2. Roles.</b></a>
+                    <p className="localvinc ">
+                        Al momento de ingresar a la plataforma, ya sea para ingresar o registrarse, se debe elegir entre uno de dos roles: <i><b>Usuario</b></i> o <i><b>Administrador.</b></i>
+                    </p>
+
+                    <a name="users" className="localvinc first">
+                        <b>2.1. Usuario. </b>
+                    </a>
+                    <a name="facul" className="localvinc second">
+                        <b>2.1.1. Facultad. </b>
+                    </a>
+                    <p className="localvinc second"> 
+                        Puede iniciar, editar y finalizar relevamientos: subir notaciones, observaciones e imágenes, a diferencia de un <i>Administrador</i>, quien no puede hacerlo. 
+                    </p>
+                    <a name="acces" className="localvinc second">
+                        <b>2.1.2. Acceso. </b>
+                    </a>
+                    <p className="localvinc second"> 
+                        Solo tiene acceso a los relevamientos que él mismo como <i>Usuario</i> inició. Una vez finalizado un relevamiento, solo puede visualizarlo, pero ya no puede volver a editarlo.
+                    </p>
+                    <a name="teams" className="localvinc second">
+                        <b>2.1.3. Equipos. </b>
+                    </a>
+                    <p className="localvinc second">
+                        Al momento de registrarse debe indicar indispensablemente y por única vez a qué equipo pertenece: Microinformática o Telecomunicaciones. 
+                    </p>
+                    <a name="admin" className="localvinc first">
+                        <b>2.1. Administrador. </b>
+                    </a>
+                    <a name="facul2" className="localvinc second">
+                        <b>2.1.1. Facultad. </b>
+                    </a>
+                    <p className="localvinc second">
+                        No puede iniciar o editar relevamientos. 
+                    </p>
+                    <a name="acces2" className="localvinc second">
+                        <b>2.1.2. Acceso. </b>
+                    </a>
+                    <p className="localvinc second">
+                        Puede monitorear todos los relevamientos abiertos por cualquier <i>Usuario</i> (en progreso y finalizados). No puede editar los mismos.
+                    </p>
+                    <br />
                 </div>
             </div>
         </div>

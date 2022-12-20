@@ -17,9 +17,6 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        // Category_id: {
-            
-        // }
     },
     {
         timeStamps: false,

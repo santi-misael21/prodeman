@@ -1,6 +1,6 @@
 import React from "react";
 // import { useEffect } from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import '../estilos/item.css';
 import { /*getVisitByID,*/ postNotation, writeCategories } from "../redux/actions";
@@ -10,7 +10,7 @@ import Camera from "./Cam/Camera";
 
 export default function Item({category, subcategory, includePhoto, go, userid, notation, visit}){
 
-	console.log(category, subcategory, includePhoto, go, userid, notation)
+	// console.log(category, subcategory, includePhoto, go, userid, notation)
 	// let [saved, setSaved] = useState({val: undefined, go, category, subcategory})
 	// let [editt, setEdit] = useState({val: undefined, go, category, subcategory})
 

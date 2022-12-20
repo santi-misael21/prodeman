@@ -10,7 +10,7 @@ export default function Profile (){
     
     let hist = useHistory()
     
-    console.log('commp begin ','user: ', user, 'admin: ', admin)
+    // console.log('commp begin ','user: ', user, 'admin: ', admin)
     let Team= user.teamId === 1 ? 'Microinformática' : user.teamId === 2 ? 'Telecomunicaciones' : ''
     
     if((user && !user.id) && (admin && !admin.id)){
@@ -31,12 +31,6 @@ export default function Profile (){
                 {Object.keys(user).length > 0 && `Tu equipo: ${Team}`}
                 <br></br>
                 <br></br>
-                {/* <div className="check1" onClick={()=>t1()} id={team1 ? 'selected': ''}>Microinformática<input type='checkbox' checked={team1} onChange={()=>t1()}/></div>
-                <br></br>
-                <div className="check2" onClick={()=>t2()} id={team2 ? 'selected': ''}>Telecomunicaciones<input type='checkbox' checked={team2} onChange={()=>t2()}/></div>
-                <br></br> */}
-                {/* {Object.keys(user).length > 0 &&
-                <button className="beginbutton" onClick={confirm} > Iniciar una visita </button>} */}
             </div>
         </div>
     )

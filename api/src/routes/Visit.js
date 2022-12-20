@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 
     let {id} = req.query
 
-    console.log(id)
+    // console.log(id)
     try {
         let visitFound = await visit.findByPk(id) // {}
         let allNotationByID = await notation.findAll({
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
             let subcategoryFound = await subcategory.findByPk(relation.subcategoryId) // {}
             catName = categoryFound.Nombre;
             subName = subcategoryFound.Nombre;
-            console.log(catName, subName, )
+            // console.log(catName, subName, )
             notations[i] = {...allNotationByID[i].dataValues, catName, subName} 
         }
 
@@ -79,7 +79,7 @@ router.get('/last', async (req, res)=> {
             // console.log('lastId', lastId, 'one', one)
 
             if(Object.keys(lastId).length) {
-                console.log('tiene length')
+                // console.log('tiene length')
                 return res.status(202).json(lastId)
             }
             
@@ -95,7 +95,7 @@ router.get('/last', async (req, res)=> {
 
 router.post('/visitid', async (req, res)=> { //postear una visita y a la vez retornar los datos
 
-    console.log(req.body)
+    // console.log(req.body)
     let {Team, Closed, Opening_date, userId} = req.body
 
     try {

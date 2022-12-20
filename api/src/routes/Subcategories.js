@@ -30,14 +30,14 @@ router.post('/define', async (req, res)=> {
 
     if(names.length && subs.length) return res.status(300).json('subs alreadyFull')
 
-    console.log('names', names)
+    // console.log('names', names)
 
     function retProm(names){
         names.map((Nombre,i)=> {resp.push(subcategory.create({
             Nombre,
             // categoryId: 1, //Después cambiar la relación de * ~ *
         }))
-        console.log('Nombre map', Nombre, i)
+        // console.log('Nombre map', Nombre, i)
     })
         return resp
     }

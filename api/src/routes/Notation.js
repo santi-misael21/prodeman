@@ -20,7 +20,7 @@ router.get('/all', async(req, res) => {
 router.post('/bydata', async (req, res) => {
     let {catName, subName} = req.body
 
-    console.log(req.body)
+    // console.log(req.body)
     try {
         
         let catId = await category.findOne({
@@ -59,7 +59,7 @@ router.post('/bydata', async (req, res) => {
 router.post('/define', async (req, res) => {
 
     let { /*Id,*/ Note, Observations, Image, visitId, /*catSubcatId,*/ catName, subName, saved } = req.body
-    console.log(req.body, typeof catName, typeof subName, catName, subName, req.body.catName, req.body.subName)
+    // console.log(req.body, typeof catName, typeof subName, catName, subName, req.body.catName, req.body.subName)
 
     // let {catName, subName} = req.query
 
@@ -147,7 +147,7 @@ router.post('/define', async (req, res) => {
                 where
             })
             // y devolver al front el updating
-            console.log(justUpdated)
+            // console.log(justUpdated)
             let rr = {...justUpdated.dataValues, names: arr}
             return res.status(201).json(rr)
         }
@@ -166,7 +166,7 @@ router.post('/define', async (req, res) => {
             }
         })
 
-        // Che, si encontraste más de 1 elemento donde se repiten el catSubcatId y la visitId, borralos
+        // Si encontraste más de 1 elemento donde se repiten el catSubcatId y la visitId, borralos
         if(findReps.length > 1) {
             for(let i=1; i < findReps.length; i++){
                 let destroyNots = await notation.destroy({
@@ -184,7 +184,7 @@ router.post('/define', async (req, res) => {
         return res.status(201).json(r)
         
     } catch (error) {
-        console.log('notat2 error', error)
+        console.log('notat2 error', error.message)
     }
 })
 

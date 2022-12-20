@@ -6,8 +6,7 @@ import { useHistory } from "react-router-dom";
 import '../../estilos/visits.css';
 import { getVisitByID } from "../../redux/actions";
 
-export default function Visits({Closed, Closing_date, Id, Opening_date, Team}){
-    // Closed= true//Hardcode para comprobar el cambio de color
+export default function Visits({Closed, /*Closing_date,*/ Id, Opening_date, Team}){
 
     // LOCAL:
     let [called, setCalled] = useState(false)
@@ -19,7 +18,7 @@ export default function Visits({Closed, Closing_date, Id, Opening_date, Team}){
     let dispatch = useDispatch()
     let visit = useSelector(state=> state.visit)
 
-    console.log(visit)
+    // console.log(visit)
 
     function see() {
         if(!called){

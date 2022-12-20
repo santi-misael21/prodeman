@@ -8,7 +8,7 @@ const axios = require('axios').default;
 
 router.post('/login', async (req, res) => {
     let { username, password, localst } = req.body
-console.log(req.body)
+// console.log(req.body)
     try {
         
         let userFound= await user.findOne({
@@ -16,6 +16,8 @@ console.log(req.body)
                 username
             }
         })
+
+        if(!userFound) return res.status(200).json('Usuario no encontrado')
 
         if(userFound.dataValues.password === password || localst) {
         
@@ -29,10 +31,10 @@ console.log(req.body)
 
         }
 
-        return res.status(200).json('Incorrect password')
+        return res.status(200).json('Contraseña incorrecta')
 
     } catch (error) {
-        console.log('users error')        
+        // console.log('users error', error.message)        
     }
 });
 
@@ -40,7 +42,7 @@ router.post('/create', async (req, res) => {
 
     let {teamname, username, password,} = req.body //enviando user = {req.body}
 
-    console.log(req.body)
+    // console.log(req.body)
 
     if(!teamname || !username || !password ) return res.status(200).json('Faltan params')
 

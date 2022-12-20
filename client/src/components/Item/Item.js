@@ -33,7 +33,7 @@ export function Detection(catsVisit, catsRequired){ // Para saber si la visita q
                     }
                 }
             }
-			console.log('catsVisit desde adentro: ', catsVisit, 'detector: ', detector, 'catsRequired: ', catsRequired)
+			// console.log('catsVisit desde adentro: ', catsVisit, 'detector: ', detector, 'catsRequired: ', catsRequired)
             return catsRequired
 		}
         return undefined
@@ -42,7 +42,7 @@ export function Detection(catsVisit, catsRequired){ // Para saber si la visita q
 
 };
 
-export function DefinePages (catsVisit, binaries) {
+export function DefinePages (catsVisit) {
     /* Qué entra -> un array de ocho binarios ? -> [0,0, 0,0, 0,0, 0,0] -> mejor aún, el mismo estado de Redux que los contiene
 
     cómo lo hace -> algo así como mapeando el array que se manda a <Item/> 
@@ -51,7 +51,7 @@ export function DefinePages (catsVisit, binaries) {
 
     qué debe sacar -> una array con ocho binarios, cada uno representa una página, completa o no -> [0,0, 0,0, 0,0, 0,0]
      */
-    console.log(catsVisit)
+    // console.log(catsVisit)
     let bins = []
     for(let i=0; i< catsVisit.categories.length; i++){
         bins[i] = 1

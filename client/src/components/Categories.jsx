@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cats_subs, closeVisit, getLastVisit, getVisitByID, writeCategories, writeCats, writeSubs } from "../redux/actions";
+import { cats_subs, closeVisit, getVisitByID, writeCategories, writeCats, writeSubs } from "../redux/actions";
 import { CATEGORIES, CreateCatsRequired, SUBCATEGORIES, } from "./Data";
 import Item from "./Item";
 import Nav from "./Nav";
@@ -8,7 +8,7 @@ import Pages from "./Pages";
 import '../estilos/categ.css';
 import { useState } from "react";
 import { DefinePages, Detection } from "./Item/Item";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Nav2 from "./Nav/Nav2";
 
 
@@ -19,7 +19,7 @@ export default function Categories(){
     let catsRequired= CreateCatsRequired(existents)
     
     // Local:
-    let [send, setSend] = useState(false)
+    // let [send, setSend] = useState(false)
     let [rslt, setRslt] = useState(null)
     let [completed, setCompleted] = useState([])
  
@@ -27,20 +27,20 @@ export default function Categories(){
     const disp = useDispatch();
     const hist = useHistory();
 
-    let categories = useSelector(state=>state.categories)
-    let subcategories = useSelector(state=>state.subcategories)
+    // let categories = useSelector(state=>state.categories)
+    // let subcategories = useSelector(state=>state.subcategories)
     let visit = useSelector(state=>state.visit)
     let go = useSelector(state=> state.actualPage) // Es acá donde usarlo: <Categories/>
-    let okPages = useSelector(state=> state.statusPages)
+    // let okPages = useSelector(state=> state.statusPages)
     let user = useSelector(state=> state.user)
     let admin = useSelector(state=> state.admin)
-	let catsubcatIds = useSelector(state=> state.cat_sub_related)
+	// let catsubcatIds = useSelector(state=> state.cat_sub_related)
     
     // }
 
     // La function que dice si en la visit hay notations o no: hasta que no tenga result <Item/> no aparece
     if(rslt===null)setRslt(Detection(visit, catsRequired))
-    console.log('rslt', rslt)
+    // console.log('rslt', rslt)
     // console.log('pages para ver si cambia y puedo anclar un useEffect, ideas grandes que salían desde los primero días', go)
 
     // Esta es la magistralidad que servirá para el perfil de Admin, acá no me deja guardar los valores:
@@ -54,24 +54,14 @@ export default function Categories(){
 
     useEffect(()=>{
         setRslt(Detection(visit, catsRequired))
-        // setSend(true) // Ante la primera aparición, por defecto,
-    },[visit]); // y ante cada cambio en el objeto visit, se actualiza la data que alimenta a cada Item.
-    // Por defecto, por cada actualización, hay auto-re-renderizado, no hace falta decirle nada. 
-
-    /* Comentario out of context tal vez: una vez que llega la visit hay que hacer los demás procesos -> 
-    ¿Cuáles son los demás procesos? -> 
-    Tarea pendiente -> 
-    Procesos que dependen de la visit ->
-    1. Se arma un arreglo de data, esa data tiene que tener lo último siempre;
-    2. Si la visit es inexistente, es decir, tiene el valor de initialState, no hay que renderizar nada;
-    3. Si la visit existe, aunque esté desactualizada, se renderiza, ya caerán las actualizaciones en segundos (esto porque todavía no sé como preguntarle si está actualizada);
-    => Entonces, punto 1, hay que evitar el renderizado explícitamente si todavía no hay visit, no sé,
-    porque estamos hablando de que no tiene que realizarse el proceso de armado de data hasta que no exista una visit, y eso ya estaría pasando. Yo diría dejarlo así por ahora. 
-        Creo que el doble componente en la parte del return, se soluciona condicionado el contenido del useEffect de arriba a si existe visit.id, probar no más. Desarrollar por qué ->
-    */
-    if(Object.keys(visit).length && !visit.id){
-        hist.push('/begin')
-    }
+    },[visit]); 
+    
+//    console.log(user,admin)
+    useEffect(()=>{
+        if(Object.keys(visit).length && !Object.keys(user).length && !Object.keys(admin).length){
+            hist.push('/begin')
+        }
+    },[]);
 
     // console.log('visit.team', visit.team)
 
@@ -120,12 +110,10 @@ export default function Categories(){
         valuesArranged.push(predilect[go][bucle])
     };
 
-    console.log('keysarrangd',keysArranged,'valuesarrangd',
-        valuesArranged, visit)
+    // console.log('keysarrangd',keysArranged,'valuesarrangd', valuesArranged, visit)
 
     useEffect(()=>{
         if(rslt){
-            console.log('IMPORTANT, VER QUÉ CARAJO ES rslt AHORA: ', rslt)
             let o= {categories: rslt}
             setCompleted(DefinePages(o))
         }
@@ -145,7 +133,7 @@ export default function Categories(){
     }
 
     function saveAll(){
-        console.log('saveall', user)
+        // console.log('saveall', user)
         let Closing_date = new Date();
         disp(closeVisit({
             Id: visit.id,

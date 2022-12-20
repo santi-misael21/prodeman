@@ -16,7 +16,7 @@ router.post('/define', async(req,res)=>{
 
     let {adminname , password} = req.body
 
-    console.log(req.body)
+    // console.log(req.body)
 
     if( !adminname || !password ) return res.status(200).json('Faltan params')
 
@@ -34,7 +34,7 @@ router.post('/login', async(req,res)=>{
 
     let {adminname, password, localst} = req.body
 
-    console.log(req.body)
+    // console.log(req.body)
 
     try {
         
