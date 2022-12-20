@@ -8,17 +8,18 @@ import newtab3 from './27-276982_open-new-tab-arrow-window-comments-open-in.png'
 // import './camera.css';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getNotation, postImage, postNotation, writeCategories } from "../../redux/actions";
+import { getNotation, writeCategories } from "../../redux/actions";
 
-function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'boolean' // go = 'number' // subcategory = [prop]
+function Camera ({saved, go, catName, subcategory}) { // saved = 'boolean' // go = 'number' // subcategory = [prop]
 
-    let [image, setImage] = useState({array: []})
+    // let [image, setImage] = useState({array: []})
     let [loading, setLoading] = useState('')
     let [notationId, setNotationId] = useState(undefined)
+    let [error, setError] = useState()
 
     let admin = useSelector(state=> state.admin)
     let visit = useSelector(state=> state.visit)
-    console.log('visit linea 19 Camera.jsx', visit, go, subcategory, visit.categories[go][subcategory].saved)
+    // console.log('visit linea 19 Camera.jsx', visit, go, subcategory, visit.categories[go][subcategory].saved)
     // if(Object.keys(visit).length) console.log(visit.categories[go][subcategory].saved)
     let currentNotation = useSelector(state=> state.notation)
     if(currentNotation && Object.keys(currentNotation).length) {
@@ -27,7 +28,7 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
         }
     }
     // if(Object.keys(currentNotation).length) 
-    console.log(currentNotation)
+    // console.log(currentNotation)
     if(notationId) console.log(notationId)
     // image.array.map((p,i)=>{
     //     visit.categories[go][subcategory].photos.push(p)
@@ -45,11 +46,11 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
         }
     },[])
 
-    useEffect(()=>{
-        if(saved){
-            console.log('saved', saved)
-        }
-    }, [saved]);
+    // useEffect(()=>{
+    //     if(saved){
+    //         console.log('saved', saved)
+    //     }
+    // }, [saved]);
 
     function handleDrop(files){
         const uploaders = files.map((file,i)=>{
@@ -60,6 +61,7 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
             formData.append('api_key','728342892444894');
             formData.append('timestamps',(Date.now() / 1000 | 0));
             setLoading('true')
+            setError(undefined)
             return axios.post(
                 `https://api.cloudinary.com/v1_1/daplsqpkv/image/upload`, 
                 formData, { 
@@ -69,9 +71,9 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
                 }
             ).then(response => {
                 const data = response.data
-                console.log('data', data)
+                // console.log('data', data)
                 const url = data.secure_url;
-                console.log('fileURL', url)
+                // console.log('fileURL', url)
                 // let specificArray = image.array //default 
                 // let reduxLocalNotDatabasePhotosArray = visit.categories[go][subcategory].photos //mio
                 // specificArray.push(fileURL) //default 
@@ -79,8 +81,8 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
                 visit.categories[go][subcategory].photo=(url) //mio final
                 // const newobj = {...image, specificArray} //default 
                 // setImage(newobj)  //default 
-                console.log('redux lectura inmediata ¿actz?', visit.categories[go][subcategory].photo)
-                let Image = url
+                // console.log('redux lectura inmediata ¿actz?', visit.categories[go][subcategory].photo)
+                // let Image = url
                 // dispatch(postImage({url , notationId}))
                 dispatch(writeCategories(visit.categories)) //mio final
                 // dispatch(postNotation({
@@ -92,11 +94,14 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
                 //     visitId: visit.id,
                 //     Image,
                 // }));
+            }).catch(e=>{
+                // console.log(e, e.message)
+                setError(e.message)
             })
         })
         axios.all(uploaders).then(()=> {
             setLoading('false')
-        })
+        }).catch(e=> console.log(e))
     }
 
     // function imagePreview(){
@@ -141,6 +146,16 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
 		// }));
     }
 
+    function watchError(){
+        if(error){
+            return (
+                <div>
+                    {error}
+                </div>
+            )
+        }
+    }
+
     let len = visit.categories[go][subcategory].photo? 1 : 0
     let plu = len === 1 ? ' imagen subida ✅' : ' imágenes subidas'
     let sav = saved? 'Guardada ✅' : 'Sin guardar ❗'
@@ -176,7 +191,7 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
                             rel="noopener noreferrer">
                                 <i>
                                     <h5 style={{fontSize:'11.5px', }}>Ver en tamaño completo 
-                                        <img src={newtab3} width='12px' height='12px'/>
+                                        <img src={newtab3} width='12px' height='12px' alt=''/>
                                     </h5>
                                 </i>
                             </a>{ !admin.id &&
@@ -188,6 +203,7 @@ function Camera ({saved, go, catName, subcategory, notation}) { // saved = 'bool
                     </div>}
                 </div>
             </Container>
+            {watchError()}
         </div>
     )
 }

@@ -40,7 +40,7 @@ export default function Categories(){
 
     // La function que dice si en la visit hay notations o no: hasta que no tenga result <Item/> no aparece
     if(rslt===null)setRslt(Detection(visit, catsRequired))
-    console.log('visit', visit)
+    // console.log('visit', visit)
     // console.log('pages para ver si cambia y puedo anclar un useEffect, ideas grandes que salían desde los primero días', go)
 
     // Esta es la magistralidad que servirá para el perfil de Admin, acá no me deja guardar los valores:

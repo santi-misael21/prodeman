@@ -17,7 +17,7 @@ export default function Begin(){
 
     //Redux:
     let disp= useDispatch();
-    let s= useSelector(state => state.visits); // Comentá esta línea 
+    // let s= useSelector(state => state.visits); // Comentá esta línea 
     let user= useSelector(state => state.user);
     let admin = useSelector(state=> state.admin);    
     
@@ -42,7 +42,7 @@ export default function Begin(){
                 hist.push('/')
             }
         }
-    },[]);
+    });//,[]
 
     if(!designed && localStorage.length){
 

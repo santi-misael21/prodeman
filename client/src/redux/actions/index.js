@@ -90,7 +90,10 @@ export const writeCats = (names) => {
         }).then(r=> dispatch({
             type: WRITECATS,
             payload: r.data,
-        })).catch(e=>console.log(e))
+        })).catch(()=>{
+            return
+            // console.log(e)
+        })
     }
 };
 export const writeSubs = (names) => {
@@ -101,7 +104,10 @@ export const writeSubs = (names) => {
         }).then(r=> dispatch({
             type: WRITESUBS,
             payload: r.data,
-        })).catch(e=>console.log(e))
+        })).catch(()=>{
+            return
+            // console.log(e)
+        })
     }
 };
 
@@ -147,7 +153,9 @@ export const postTeams = (teamname) => { // []
         }).then(r=> dispatch({
             type: POST_TEAMS,
             payload: r.data,
-        })).catch(e=> console.log(e))
+        })).catch(()=> {return 
+            // console.log(e)
+        })
     }
 };
 
@@ -219,7 +227,7 @@ export const postNotation = (notation) => {
         axios.post(`http://localhost:3001/notations/define`,{
             ...notation
         }).then(r=> {
-            console.log(222, "LINEA IMPORTANTE", r.data)
+            // console.log(222, "LINEA IMPORTANTE", r.data)
             dispatch({
             type: POST_NOTATION,
             payload: r.data,
