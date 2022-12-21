@@ -20,7 +20,8 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 	let catsVisit = useSelector(state=> state.visit)
 
 	function yes(){
-		if(catsVisit.closed) return
+		console.log(admin)
+		if(catsVisit.closed || admin.id) return
 		if(catsVisit.categories[go][subcategory].saved) return
 
 		if(notation && notation.notation === undefined){
@@ -39,7 +40,8 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 		}
 	};
 	function no(){
-		if(catsVisit.closed) return
+		console.log(admin)
+		if(catsVisit.closed || admin.id) return
 		if(catsVisit.categories[go][subcategory].saved) return
 
 		if(notation && notation.notation === undefined){
