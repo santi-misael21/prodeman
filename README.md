@@ -8,11 +8,11 @@ Para correr el proyecto seguir los siguientes pasos:
 `DB_HOST=localhost:5432` <br/>
 Reemplazando los valores según los de la máquina local donde se levante el proyecto. 
 
-2. Luego, se debe crear con SQL una base de datos llamada prodeman1.
+2. Luego, se debe crear con SQL una base de datos llamada `prodeman`.
 Con el comando 
 CREATE DATABASE prodeman;
 
-![image](https://user-images.githubusercontent.com/94709834/208843298-ab47f00b-0ab6-497c-9e0c-d64b890a05ad.png)
+![image](https://user-images.githubusercontent.com/94709834/208845278-f8562a3b-82cf-49a6-94ff-de92b8e00ba6.png)
 
 3. Luego, se debe ejecutar, desde la consola de visual studio code, el comando `npm i` tanto en el directorio `client` como en `api`. 
 
