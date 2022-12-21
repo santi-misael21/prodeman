@@ -2,7 +2,7 @@ Este proyecto es una herramienta para almacenar datos y poder llevar a cabo rele
 
 Para correr el proyecto seguir los siguientes pasos:
 
-1. En la carpeta `api` se debe crear un archivo `.env` con las siguientes variables 
+1. En la carpeta `api` se debe crear un archivo `.env` con las siguientes variables <br/>
 `DB_USER=postgres` <br/>
 `DB_PASSWORD=[contraseña para usuario postgres]` <br/>
 `DB_HOST=localhost:5432` <br/>
