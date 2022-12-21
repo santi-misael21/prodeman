@@ -16,11 +16,11 @@ CREATE DATABASE prodeman;
 
 3. Luego, se debe ejecutar, desde la consola de visual studio code, el comando `npm i` tanto en el directorio `client` como en `api`. 
 
-![image](https://user-images.githubusercontent.com/94709834/208842914-07ab6386-86c4-4c50-99f8-ea5de30f551d.png)
+![image](https://user-images.githubusercontent.com/94709834/208845779-a4032ad0-3399-405b-bc6d-253fef19b97a.png)
 
-Una vez instaladas las tecnologías y con la base de datos de nombre `prodeman` creada, se debe ejecutar el comando `npm start` en cada uno de los mismos directorios. 
+Una vez instaladas las tecnologías y con la base de datos de nombre `prodeman` creada, se debe ejecutar el comando `npm start` en cada uno de los mismos directorios.
 
-![image](https://user-images.githubusercontent.com/94709834/208842982-7160aac4-b9f7-49cb-b2db-be4c51228c69.png)
+![image](https://user-images.githubusercontent.com/94709834/208845855-28aaff41-ee34-4f84-ab02-43e35a212329.png)
 
 Conclusión
 
