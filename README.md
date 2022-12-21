@@ -3,9 +3,9 @@ Este proyecto es una herramienta para almacenar datos y poder llevar a cabo rele
 Para correr el proyecto seguir los siguientes pasos:
 
 1. En la carpeta `api` se debe crear un archivo `.env` con las siguientes variables 
-`DB_USER=postgres`
-`DB_PASSWORD=[contraseña para usuario postgres]`
-`DB_HOST=localhost:5432`
+`DB_USER=postgres` <br/>
+`DB_PASSWORD=[contraseña para usuario postgres]` <br/>
+`DB_HOST=localhost:5432` <br/>
 Reemplazando los valores según los de la máquina local donde se levante el proyecto. 
 
 2. Luego, se debe crear con SQL una base de datos llamada prodeman1.
