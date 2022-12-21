@@ -24,7 +24,7 @@ Una vez instaladas las tecnologías y con la base de datos de nombre `prodeman` 
 
 Conclusión
 
-Con esto efectuado, se podrá hacer uso de la aplicación en el puerto <a href='' target='_blank'>http://localhost:3000</a> (donde por defecto el front-end se levanta), a menos que la consola del Visual Studio Code indique otra cosa. 
+Con esto efectuado, se podrá hacer uso de la aplicación en el puerto <a href='http://localhost:3000' target='_blank'>http://localhost:3000</a> (donde por defecto el front-end se levanta), a menos que la consola del Visual Studio Code indique otra cosa. 
 
 Recomiendo para probar la aplicación, registrarse como usuario. Ya que el administrador por la naturaleza de la aplicación no puede iniciar relevamientos o hacer ningún tipo de cambio en los mismos.
 
