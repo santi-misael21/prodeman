@@ -140,7 +140,7 @@ export default function Item({category, subcategory, includePhoto, go, userid, n
 					onChange={(e)=> handText(e)} 
 					disabled={(catsVisit.closed) || admin.id || (notation && notation.saved) || false}
 					placeholder='Observaciones' 
-					value={notation && typeof notation.observations === 'string' && notation.observations || ''}
+					value={(notation && typeof notation.observations === 'string' && notation.observations) || ''}
 			/>
 			<br></br>
 

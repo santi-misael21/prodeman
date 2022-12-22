@@ -58,80 +58,80 @@ export default function Help(){
                 </div>
 
                 <div className="guide">
-                    <a name="intro" className="localvinc"><b>1. Introducción.</b></a>
+                    <a href="#intro" style={{color:'yellowgreen'}} name="intro" className="localvinc"><b>1. Introducción.</b></a>
                     <p className="localvinc">Esta aplicación sirve como herramienta para recopilar la totalidad de datos de cada relevamiento de los equipos informáticos de la empresa. </p>
                     <p className="localvinc">
                     Realizar un relevamiento conlleva abarcar ocho categorías o sectores de la empresa. Donde cada categoría se compone de varias subcategorías o elementos a ser relevados o revisados individualmente. </p> <br />
                     
-                    <a name="datos" className="localvinc first"><b>1.1. Datos. </b></a>
+                    <a href="#datos" style={{color:'yellowgreen'}} name="datos" className="localvinc first"><b>1.1. Datos. </b></a>
                     <p className="localvinc first">Cada subcategoría a relevar requiere ser completada con los siguientes datos: </p>
 
-                    <a name="notat" className="localvinc second"><b>1.1.1. Notación. </b></a>
+                    <a href="#notat" style={{color:'yellowgreen'}} name="notat" className="localvinc second"><b>1.1.1. Notación. </b></a>
                     <p className="localvinc second">Una respuesta binaria de <i>Sí</i> o <i>No</i>.</p>
 
-                    <a name="obser" className="localvinc second"><b>1.1.2. Observación. </b></a>
+                    <a href="#obser" style={{color:'yellowgreen'}} name="obser" className="localvinc second"><b>1.1.2. Observación. </b></a>
                     <p className="localvinc second">Un espacio para escribir un comentario donde se detallen las observaciones.</p>
 
-                    <a name="image" className="localvinc second"><b>1.1.3. Imagen. </b></a>
+                    <a href="#image" style={{color:'yellowgreen'}} name="image" className="localvinc second"><b>1.1.3. Imagen. </b></a>
                     <p className="localvinc second">Un espacio para subir una fotografía sobre el ítem en cuestión (este parámetro no siempre es requerido).</p>
                     
                     <br /> <br /> <br />
 
-                    <a name="roles" className="localvinc"><b>2. Roles.</b></a>
+                    <a href="#roles" style={{color:'yellowgreen'}} name="roles" className="localvinc"><b>2. Roles.</b></a>
                     <p className="localvinc ">
                         Al momento de ingresar a la plataforma, ya sea para ingresar o registrarse, se debe elegir entre uno de dos roles: <i><b>Usuario</b></i> o <i><b>Administrador.</b></i>
                     </p>
                                     <br />
-                    <a name="users" className="localvinc first">
+                    <a href="#users" style={{color:'yellowgreen'}} name="users" className="localvinc first">
                         <b>2.1. Usuario. </b>
                     </a>
-                    <a name="facul" className="localvinc second">
+                    <a href="#facul" style={{color:'yellowgreen'}} name="facul" className="localvinc second">
                         <b>2.1.1. Facultad. </b>
                     </a>
                     <p className="localvinc second"> 
                         Puede iniciar, editar y finalizar relevamientos: subir notaciones, observaciones e imágenes, a diferencia de un <i>Administrador</i>, quien no puede hacerlo. 
                     </p>
-                    <a name="acces" className="localvinc second">
+                    <a href="#acces" style={{color:'yellowgreen'}} name="acces" className="localvinc second">
                         <b>2.1.2. Acceso. </b>
                     </a>
                     <p className="localvinc second"> 
                         Solo tiene acceso a los relevamientos que él mismo como <i>Usuario</i> inició. Una vez finalizado un relevamiento, solo puede visualizarlo, pero ya no puede volver a editarlo.
                     </p>
-                    <a name="teams" className="localvinc second">
+                    <a href="#teams" style={{color:'yellowgreen'}} name="teams" className="localvinc second">
                         <b>2.1.3. Equipos. </b>
                     </a>
                     <p className="localvinc second">
                         Al momento de registrarse debe indicar indispensablemente y por única vez a qué equipo pertenece: Microinformática o Telecomunicaciones. 
                     </p> <br />
-                    <a name="admin" className="localvinc first">
+                    <a href="#admin" style={{color:'yellowgreen'}} name="admin" className="localvinc first">
                         <b>2.2. Administrador. </b>
                     </a>
-                    <a name="facul2" className="localvinc second">
+                    <a href="#facul2" style={{color:'yellowgreen'}} name="facul2" className="localvinc second">
                         <b>2.2.1. Facultad. </b>
                     </a>
                     <p className="localvinc second">
                         No puede iniciar o editar relevamientos. 
                     </p>
-                    <a name="acces2" className="localvinc second">
+                    <a href="#acces2" style={{color:'yellowgreen'}} name="acces2" className="localvinc second">
                         <b>2.2.2. Acceso. </b>
                     </a>
                     <p className="localvinc second">
                         Puede monitorear todos los relevamientos abiertos por cualquier <i>Usuario</i> (en progreso y finalizados). No puede editar los mismos.
                     </p>
                     <br /><br /><br />
-                    <a name="relev" className="localvinc"><b>3. Relevamientos.</b></a>
+                    <a href="#relev" style={{color:'yellowgreen'}} name="relev" className="localvinc"><b>3. Relevamientos.</b></a>
                     <p className="localvinc">                    
                     Cada relevamiento está compuesto de ocho páginas, cada una representa una categoría. 
                     Dependiendo de cada una existirán más o menos elementos o subcategorías a relevar.
                     En la zona inferior de cada tarjeta, tienen lugar dos botones: <i>Editar</i> y <i>Guardar</i>.
                     </p> <br />
-                    <a name="buttn" className="localvinc first">
+                    <a href="#buttn" style={{color:'yellowgreen'}} name="buttn" className="localvinc first">
                         <b>3.1. Botones.  </b>
                     </a>
-                    <a name="savng" className="localvinc second">
+                    <a href="#savng" style={{color:'yellowgreen'}} name="savng" className="localvinc second">
                         <b>3.1.1. Guardar.  </b>
                     </a>
-                    <a name="enabl" className="localvinc third">
+                    <a href="#enabl" style={{color:'yellowgreen'}} name="enabl" className="localvinc third">
                         <b>3.1.1.1. Habilitamiento. </b>
                     </a>
                     <p className="localvinc third">                    
@@ -139,7 +139,7 @@ export default function Help(){
                     -se elige una respuesta entre sí o no; <br />
                     {/* -se pulsa el botón <i>Editar</i>. */}
                     </p>
-                    <a name="disab" className="localvinc third">
+                    <a href="#disab" style={{color:'yellowgreen'}} name="disab" className="localvinc third">
                         <b>3.1.1.2. Deshabilitamiento. </b>
                     </a>
                     <p className="localvinc third">    
@@ -149,16 +149,16 @@ export default function Help(){
                     -es pulsado este mismo botón;
                     </p>
 
-                    <a name="funct" className="localvinc third">
+                    <a href="#funct" style={{color:'yellowgreen'}} name="funct" className="localvinc third">
                         <b>3.1.1.3. Función. </b>
                     </a>
-                    <a name="datab" className="localvinc fourth">
+                    <a href="#datab" style={{color:'yellowgreen'}} name="datab" className="localvinc fourth">
                         <b>3.1.1.3.1. Base de datos. </b>
                     </a>
                     <p className="localvinc fourth">  
                     Sube a la base de datos los datos que estén registrados en esa tarjeta.
                     </p>
-                    <a name="monit" className="localvinc fourth">
+                    <a href="#monit" style={{color:'yellowgreen'}} name="monit" className="localvinc fourth">
                         <b>3.1.1.3.2. Monitoreo.  </b>
                     </a>
                     <p className="localvinc fourth">    
@@ -166,17 +166,17 @@ export default function Help(){
                     </p> <br />
 
 
-                    <a name="edtng" className="localvinc second">
+                    <a href="#edtng" style={{color:'yellowgreen'}} name="edtng" className="localvinc second">
                         <b>3.1.2. Editar. </b>
                     </a>
-                    <a name="enabl2" className="localvinc third">
+                    <a href="#enabl2" style={{color:'yellowgreen'}} name="enabl2" className="localvinc third">
                         <b>3.1.2.1. Habilitamiento. </b>
                     </a>
                     <p className="localvinc third">    
                     El botón <i>Editar</i> se habilita cuando: <br />
                     -se pulsa el botón <i>Guardar</i>;
                     </p>
-                    <a name="disab2" className="localvinc third">
+                    <a href="#disab2" style={{color:'yellowgreen'}} name="disab2" className="localvinc third">
                         <b>3.1.2.2. Deshabilitamiento. </b>
                     </a>
                     <p className="localvinc third">    
@@ -184,7 +184,7 @@ export default function Help(){
                     -es pulsado este mismo botón; <br />
                     -se concluye la visita.
                     </p>
-                    <a name="funct2" className="localvinc third">
+                    <a href="#funct2" style={{color:'yellowgreen'}} name="funct2" className="localvinc third">
                         <b>3.1.2.3. Función. </b>
                     </a>
                     <p className="localvinc third">    

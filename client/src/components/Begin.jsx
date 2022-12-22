@@ -71,19 +71,20 @@ export default function Begin(){
 
     // console.log('commp begin ','user: ', user, 'admin: ', admin)
     let Team= user.teamId === 1 ? 'Microinformática' : user.teamId === 2 ? 'Telecomunicaciones' : ''
+    let object = {Team, userId: user.id}
 
     useEffect(()=>{
         if(conf){
             // console.log('conf confirmado', conf)
             let Opening_date= new Date();
 
-            disp(getVisitID({Team, Opening_date, Closed: false, userId: user.id}))
+            disp(getVisitID({...object, Opening_date, Closed: false, }))
 
             hist.push({
                 pathname: '/check',
             }); 
         }
-    },[conf])
+    },[conf]);
 
     // console.log(s)
 
