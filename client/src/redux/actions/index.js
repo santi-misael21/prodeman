@@ -1,5 +1,6 @@
 import axios from 'axios'; 
-import { API_URL } from '../../config/environment.js';
+// import { API_URL } from '../../config/environment.js';
+const API_URL = `http://localhost:3001`;
 
 export const GET_LAST_VISIT = "GET_LAST_VISIT";
 export const GET_VISIT_ID = "GET_VISIT_ID";
