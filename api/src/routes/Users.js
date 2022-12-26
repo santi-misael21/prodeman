@@ -6,6 +6,12 @@ const { category, subcategory, notation, visit, notation_visit, user, team } = r
 
 const axios = require('axios').default;
 
+router.get('/all', async(req,res)=>{
+    let allUsers = await user.findAll()
+
+    return res.status(200).json(allUsers)
+})
+
 router.post('/login', async (req, res) => {
     let { username, password, localst } = req.body
 // console.log(req.body)
