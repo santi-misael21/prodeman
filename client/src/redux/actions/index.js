@@ -1,4 +1,6 @@
 import axios from 'axios'; 
+import { API_URL } from '../../config/environment.js';
+// const API_URL = `http://localhost:3001`;
 
 export const GET_LAST_VISIT = "GET_LAST_VISIT";
 export const GET_VISIT_ID = "GET_VISIT_ID";
@@ -34,10 +36,11 @@ export const GET_NOTATION = "GET_NOTATION";
 //     }
 // };
 
+
 export const getVisitID = (body) => { // Mandas la creación de la visita y te devuelve la visita creada + id
     return async function (dispatch){
         // console.log(body)
-        axios.post("http://localhost:3001/visit/visitid", body
+        axios.post(`${API_URL}/visit/visitid`, body
         ).then(r=> dispatch({
             type: GET_VISIT_ID, 
             payload: r.data,
@@ -47,7 +50,7 @@ export const getVisitID = (body) => { // Mandas la creación de la visita y te d
 
 export const getVisitByID = (id) => {
     return async function (dispatch) {
-        axios.get(`http://localhost:3001/visit?id=${id}`)
+        axios.get(`${API_URL}/visit?id=${id}`)
         .then(r=>dispatch({
             type: GET_VISIT_ID,
             payload: r.data,
@@ -57,7 +60,7 @@ export const getVisitByID = (id) => {
 
 export const getVisitsByuserId = (userId) => {
     return async function (dispatch){
-        axios.get(`http://localhost:3001/visit/all?userId=${userId}`)
+        axios.get(`${API_URL}/visit/all?userId=${userId}`)
         .then(r=>dispatch({
             type: GET_USER_VISITS,
             payload: r.data,
@@ -67,7 +70,7 @@ export const getVisitsByuserId = (userId) => {
 
 export const getAllVisits = () => {
     return async function (dispatch){
-        axios.get(`http://localhost:3001/visit/all`)
+        axios.get(`${API_URL}/visit/all`)
         .then(r=>dispatch({
             type: GET_ALL_VISITS,
             payload: r.data,
@@ -85,7 +88,7 @@ export const writeCategories = (array) => {
 export const writeCats = (names) => {
     return async function (dispatch) {
         // console.log("array of action writeCatsAndSubcats", names)
-        axios.post(`http://localhost:3001/categories/define`, {
+        axios.post(`${API_URL}/categories/define`, {
             names
         }).then(r=> dispatch({
             type: WRITECATS,
@@ -99,7 +102,7 @@ export const writeCats = (names) => {
 export const writeSubs = (names) => {
     return async function (dispatch) {
         // console.log("array of action writeCatsAndSubcats", names)
-        axios.post(`http://localhost:3001/subcategories/define`, {
+        axios.post(`${API_URL}/subcategories/define`, {
             names
         }).then(r=> dispatch({
             type: WRITESUBS,
@@ -113,7 +116,7 @@ export const writeSubs = (names) => {
 
 export const cats_subs = (objectsInArray) => {
     return async function (dispatch) {
-        axios.post(`http://localhost:3001/catsubcats/define`,{
+        axios.post(`${API_URL}/catsubcats/define`,{
             objectsInArray
         }).then(r=> dispatch({
             type: CATS_SUBS,
@@ -138,7 +141,7 @@ export const statusPages = (a) => {
 
 export const getTeams = () => {
     return async function (dispatch) {
-        axios.get(`http://localhost:3001/teams/all`)
+        axios.get(`${API_URL}/teams/all`)
         .then(r=> dispatch({
             type: GET_TEAMS,
             payload: r.data,
@@ -148,7 +151,7 @@ export const getTeams = () => {
 
 export const postTeams = (teamname) => { // []
     return async function (dispatch) {
-        axios.post(`http://localhost:3001/teams/define`, {
+        axios.post(`${API_URL}/teams/define`, {
             teamname 
         }).then(r=> dispatch({
             type: POST_TEAMS,
@@ -161,7 +164,7 @@ export const postTeams = (teamname) => { // []
 
 export const getUsers = () => {
     return async function (dispatch) {
-        axios.post(`http://localhost:3001/users/all`)
+        axios.post(`${API_URL}/users/all`)
         .then(r=>dispatch({
             type: GET_USERS,
             payload: r.data,
@@ -171,7 +174,7 @@ export const getUsers = () => {
 
 export const loginUser = (body) => { // { username | password } 
     return async function (dispatch) {
-        axios.post(`http://localhost:3001/users/login`, {
+        axios.post(`${API_URL}/users/login`, {
             ...body
         }).then(r=> dispatch({
             type: LOGIN_USER,
@@ -183,7 +186,7 @@ export const loginUser = (body) => { // { username | password }
 export const postUser = (user) => { // user = {teamname, username, password,}
     return async function (dispatch) {
         // console.log(user)
-        axios.post(`http://localhost:3001/users/create`, {
+        axios.post(`${API_URL}/users/create`, {
             ...user
         }).then(r=>dispatch({
             type: POST_USER,
@@ -194,7 +197,7 @@ export const postUser = (user) => { // user = {teamname, username, password,}
 
 export const loginAdmin = (body) => { // { username | password } 
     return async function (dispatch) {
-        axios.post(`http://localhost:3001/admins/login`, {
+        axios.post(`${API_URL}/admins/login`, {
             ...body
         }).then(r=> dispatch({
             type: LOGIN_ADMIN,
@@ -206,7 +209,7 @@ export const loginAdmin = (body) => { // { username | password }
 export const postAdmin = (admin) => { // user = {teamname, username, password,}
     return async function (dispatch) {
         // console.log(user)
-        axios.post(`http://localhost:3001/admins/define`, {
+        axios.post(`${API_URL}/admins/define`, {
             ...admin
         }).then(r=>dispatch({
             type: POST_ADMIN,
@@ -224,7 +227,7 @@ export const logOut = () => {
 
 export const postNotation = (notation) => {
     return async function (dispatch) {
-        axios.post(`http://localhost:3001/notations/define`,{
+        axios.post(`${API_URL}/notations/define`,{
             ...notation
         }).then(r=> {
             // console.log(222, "LINEA IMPORTANTE", r.data)
@@ -237,7 +240,7 @@ export const postNotation = (notation) => {
 
 export const closeVisit = (data) => {
     return async function (dispatch) {
-        axios.put(`http://localhost:3001/visit/closing`, data)
+        axios.put(`${API_URL}/visit/closing`, data)
         .then(r=> dispatch({
             type: CLOSE_VISIT,
             payload: r.data,
@@ -247,7 +250,7 @@ export const closeVisit = (data) => {
 
 export const postImage = (post) => { //{url, visitId}
     return async function(dispatch){
-        axios.post(`http://localhost:3001/image/define`, post) 
+        axios.post(`${API_URL}/image/define`, post) 
         .then(r=>dispatch({
             type : POST_IMAGE,
             payload: r.data,
@@ -257,7 +260,7 @@ export const postImage = (post) => { //{url, visitId}
 
 export const getNotation = (data) => {
     return async function (dispatch) {
-        axios.post(`http://localhost:3001/notations/bydata`, data
+        axios.post(`${API_URL}/notations/bydata`, data
         ).then(r=>dispatch({
             type: GET_NOTATION,
             payload: r.data,

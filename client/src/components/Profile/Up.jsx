@@ -182,7 +182,7 @@ export default function Logup(){
                             onChange={(e)=>change(e)}
                         />
                         <div className={errors.n ? "errors" : "noterr"} >
-                            {errors.n? errors.n : theuser === 'Usuario no encontrado' && theuser || <br/> } 
+                            {(errors.n? errors.n : theuser === 'Usuario no encontrado' && theuser) || <br/> } 
                         </div>
 
                         <div>Contraseña</div>
@@ -192,7 +192,7 @@ export default function Logup(){
                             value={input.password} onChange={(e)=>change(e)}
                         />
                         <div className={errors.p ? "errors" : "noterr"} >
-                            {errors.p? errors.p : theuser === 'Contraseña incorrecta' && theuser || <br/> } 
+                            {(errors.p? errors.p : theuser === 'Contraseña incorrecta' && theuser) || <br/> } 
                         </div>
 
                         { tologup && foruser &&

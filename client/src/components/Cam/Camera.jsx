@@ -44,7 +44,7 @@ function Camera ({saved, go, catName, subcategory}) { // saved = 'boolean' // go
             let subName= subcategory
             dispatch(getNotation({catName, subName}))
         }
-    },[])
+    },[]); //,[]
 
     // useEffect(()=>{
     //     if(saved){

@@ -17,9 +17,10 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST
 } = process.env;
 
-// console.log(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/[DB-Name]`);
+// console.log(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/spoondiets`);
+let DB = DB_USER === 'postgres' ? 'prodeman' : DB_USER ;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/prodeman`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   dialect: 'sqlite',    
