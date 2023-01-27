@@ -43,6 +43,8 @@ router.post('/login', async(req,res)=>{
                 adminname
             }
         })
+        
+        if(!adminFound) return res.status(200).json('Administrador no encontrado')
 
         if(adminFound.dataValues.password === password || localst) {
         
@@ -56,7 +58,7 @@ router.post('/login', async(req,res)=>{
 
         }
 
-        return res.status(200).json('Incorrect password')
+        return res.status(200).json('Contraseña incorrecta')
 
     } catch (error) {
         console.log(error)        
