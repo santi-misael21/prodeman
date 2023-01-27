@@ -1,6 +1,8 @@
 Este proyecto es una herramienta para almacenar datos y poder llevar a cabo relevamientos técnicos, guardando en una base de datos texto e imágenes relativas al estado de funcionamiento de las instalaciones de una empresa.
 
-Para correr el proyecto, clone el código y siga los siguientes pasos: 
+<b><a href='https://createreactapp-brown.vercel.app/' target='_blank'>Visitar deploy</a></b>
+
+Para correr el proyecto <b>localmente</b>, clone el código y siga los siguientes pasos: 
 
 1. En la carpeta `api` se debe crear un archivo `.env` con las siguientes variables <br/>
 `DB_USER=postgres` <br/>
